@@ -1,0 +1,409 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Anchored News - News Today</title>
+    <!--Selective Mapping-->
+    <!-- GOOGLE CHARTS VERSION
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>-->
+    <!--<script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+    <script src="//d3js.org/d3-geo-projection.v1.min.js"></script>
+    <script src="//d3js.org/topojson.v2.min.js"></script>-->
+
+    <!--Draggable Div with JQuery-->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script>
+      $(function () {
+        $('#controlmap').draggable()
+      })
+    </script>
+
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+
+  <body>
+    <div class="banner">
+      <nav>
+        <ul class="nav">
+          <li>
+            <a
+              href="index.html"
+              style="border-top: 6px solid #29aceb; height: 13px;"
+            >
+              News
+            </a>
+          </li>
+          <li><a href="trends.html">Compare Trends</a></li>
+          <li><a href="search.html">Search</a></li>
+          <li class="title">
+            <a style="overflow-wrap: normal;" href="#index">Anchored News</a>
+          </li>
+          <li style="float: right;">
+            <a class="active" href="about.html">About</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="nav" id="message">
+        <p class="message">
+          This website project is an ongoing exploration of news bias, data
+          visualization, and user engagement. The below maps/graphs will soon be
+          connected to live feeds intended to reflect global media bias and
+          trends.
+        </p>
+      </div>
+    </div>
+
+    <!--<script src="https://d3js.org/d3.v4.min.js"></script>-->
+    <script type="text/javascript" src="/js/mapcontrol.js"></script>
+    <!--Map Control Box-->
+    <div id="control">
+      <div id="controlmap" class="margin">
+        <div id="controlbox" class="feed-span control">
+          <!--Map Toggle-->
+          <!--<button class=default href="javascript:;" onmousedown="toggleDiv('mapid');">Toggle Globe |
+                    Equirectangular</button>-->
+
+          <!--Mini map-->
+          <div id="widget">
+            <div id="markerbounds">
+              <div id="box">
+                <div id="marker"></div>
+              </div>
+            </div>
+            <div>
+              <p id="coord"></p>
+            </div>
+          </div>
+
+          <!--Scale/Zoom-->
+          <div class="projection-type item">
+            <div><select class="default" name="type" value="150"></select></div>
+          </div>
+
+          <div class="slider item">
+            <div class="label">
+              scale (
+              <span class="value">250</span>
+              )
+            </div>
+            <div>
+              <span class="low">90</span>
+              <input class="controlslide" type="range" name="scale" min="90"
+              max="900" value=250">
+              <span>900</span>
+            </div>
+          </div>
+          <div class="slider item">
+            <div class="label">
+              center (lon) (
+              <span class="value">0</span>
+              )
+            </div>
+            <div>
+              <span class="low">-180</span>
+              <input
+                class="controlslide"
+                type="range"
+                name="centerLon"
+                min="-180"
+                max="180"
+                value="0"
+              />
+              <span>180</span>
+            </div>
+          </div>
+          <div class="slider item">
+            <div class="label">
+              center (lat) (
+              <span class="value">0</span>
+              )
+            </div>
+            <div>
+              <span class="low">-90</span>
+              <input
+                class="controlslide"
+                type="range"
+                name="centerLat"
+                min="-90"
+                max="90"
+                value="0"
+              />
+              <span>90</span>
+            </div>
+          </div>
+          <div class="slider item">
+            <div class="label">
+              translate (x) (
+              <span class="value">480</span>
+              )
+            </div>
+            <div>
+              <span class="low">0</span>
+              <input
+                class="controlslide"
+                type="range"
+                name="translateX"
+                min="0"
+                max="960"
+                value="480"
+              />
+              <span>960</span>
+            </div>
+          </div>
+          <div class="slider item">
+            <div class="label">
+              translate (y) (
+              <span class="value">250</span>
+              )
+            </div>
+            <div>
+              <span class="low">0</span>
+              <input
+                class="controlslide"
+                type="range"
+                name="translateY"
+                min="0"
+                max="500"
+                value="250"
+              />
+              <span>500</span>
+            </div>
+          </div>
+          <!--Rotation-->
+          <div class="slider item">
+            <div class="label">
+              rotate (&lambda;) (
+              <span class="value">0</span>
+              )
+            </div>
+            <div>
+              <span class="low">0</span>
+              <input
+                class="controlslide"
+                type="range"
+                name="rotateLambda"
+                min="0"
+                max="360"
+                value="0"
+              />
+              <span>360</span>
+            </div>
+          </div>
+          <div class="slider item">
+            <div class="label">
+              rotate (&phi;) (
+              <span class="value">0</span>
+              )
+            </div>
+            <div>
+              <span class="low">0</span>
+              <input
+                class="controlslide"
+                type="range"
+                name="rotatePhi"
+                min="0"
+                max="360"
+                value="0"
+              />
+              <span>360</span>
+            </div>
+          </div>
+          <div class="slider item">
+            <div class="label">
+              rotate (&gamma;) (
+              <span class="value">0</span>
+              )
+            </div>
+            <div>
+              <span class="low">0</span>
+              <input
+                class="controlslide"
+                type="range"
+                name="rotateGamma"
+                min="0"
+                max="360"
+                value="0"
+              />
+              <span>360</span>
+            </div>
+          </div>
+
+          <!--Country Exclusion-->
+          <!--All Except This-->
+          <!--This Except All-->
+        </div>
+      </div>
+    </div>
+
+    <!--Draggable Function for Control Box
+    <script type="text/javascript" src="../js/draggable.js"></script>-->
+
+    <!--D3 MAPS IN BACKGROUND-->
+
+    <div class="feed-background">
+      <!--Globe - Needs to change geojson var
+        <div class="map" id="mapidglobe" style="text-align:center; padding-top: 100px;">
+            <canvas width="950" height="1000"></canvas>
+        </div>-->
+
+      <!-- Flat Map 
+        <div class="map" id="mapidflat" style="background-image: url('images/map.png'); height: 750px;"></div>-->
+
+      <svg
+        width="100%"
+        height="800px"
+        class="map"
+        style="text-align: center; margin-top: 100px; overflow: visible;"
+      >
+        <g class="graticule">
+          <path></path>
+        </g>
+        <g class="circles"></g>
+        <g class="map"></g>
+        <circle class="projection-center" r="4"></circle>
+      </svg>
+
+      <script src="/js/d3.min.js"></script>
+
+      <!--<script type="text/javascript" src="../js/globemap.js"></script>-->
+
+      <script type="text/javascript" src="/js/maps.js"></script>
+    </div>
+    <div class="background-placeholder"></div>
+
+    <div class="wrapper">
+      <h1>NEWS FEED FILTER</h1>
+      <div class="margin">
+        <div class="feed-span, feed">
+          <input
+            type="text"
+            id="sourceInput"
+            onkeyup="searchFunction()"
+            placeholder="Search for news sources.."
+            title="Type in a name"
+          />
+
+          <ul id="sources">
+            <li><a id="source" class="source">Reports Pro</a></li>
+            <li><a id="source" class="source">BBC</a></li>
+
+            <li><a id="source" class="source">Newszilla</a></li>
+            <li><a id="source" class="source">Newslux</a></li>
+
+            <li><a id="source" class="source">AuthenticNews</a></li>
+            <li><a id="source" class="source">FrontNews</a></li>
+            <li><a id="source" class="source">Newslia</a></li>
+          </ul>
+        </div>
+
+        <script>
+          //search function, sort with typing
+          function searchFunction() {
+            var input, filter, ul, li, a, i, txtValue
+            input = document.getElementById('sourceInput')
+            filter = input.value.toUpperCase()
+            ul = document.getElementById('sources')
+            li = ul.getElementsByTagName('li')
+            for (i = 0; i < li.length; i++) {
+              a = li[i].getElementsByTagName('a')[0]
+              txtValue = a.textContent || a.innerText
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = ''
+              } else {
+                li[i].style.display = 'none'
+              }
+            }
+          }
+          //append source name in div to feed-grid Id
+          var source
+          source = document.getElementsByClassName('source')
+          Array.prototype.forEach.call(source, function (element) {
+            element.addEventListener('click', () => {
+              document.getElementById(
+                'feed-grid',
+              ).innerHTML += `<div class="feed">${element.text}</div>`
+            }) 
+
+            //source disappears after selection (Needs Fixing)
+            $('#sources').change(function () {
+              $('#source').addClass('hidden')
+            })
+          })
+        </script>
+        <!--SCRIPT MAKES NAMES APPEAR BELOW WITHIN A DIV-->
+        <div id="feed-grid" class="feed-grid">
+          <!--<div class="feed"></div>-->
+        </div>
+
+        <div class="feed-span, feed"></div>
+      </div>
+    </div>
+    <div class="background-placeholder"></div>
+    <!-------------------------------Duplicated Section----------------------------------------->
+    <div class="wrapper">
+      <h1>NEWS FEED SELECTOR #2</h1>
+      <div class="margin">
+        <div class="feed-span, feed">
+          <!--
+                <script>
+                    var url = 'https://newsapi.org/v2/everything?' +
+                        'q=Apple&' +
+                        'from=2022-11-01&' +
+                        'sortBy=popularity&' +
+                        'apiKey=631dc06585164470aacefd1118f11c15';
+
+                    var req = new Request(url);
+
+                    fetch(req)
+                        .then(function (response) {
+                            console.log(response.json());
+                        })
+                </script>-->
+        </div>
+        <div class="feed-grid">
+         
+        </div>
+
+        <div class="feed-span feed">
+          <!--
+                <script>
+                    var url = 'https://newsapi.org/v2/top-headlines?' +
+                        'sources=bbc-news&' +
+                        'apiKey=631dc06585164470aacefd1118f11c15';
+                    var req = new Request(url);
+                    fetch(req)
+                        .then(function (response) {
+                            console.log(response.json());
+                        })
+                </script>-->
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div>
+        <div>
+          <p class="footer-body">
+            <br />
+            <br />
+            Footer Stuff
+          </p>
+        </div>
+        <div>
+          <p class="footer">
+            <br />
+            <br />
+            Webpage by Sophia Herman &nbsp; &nbsp;
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
