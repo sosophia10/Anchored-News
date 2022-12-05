@@ -3,49 +3,70 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <meta charset="utf-8" />
-    <title>Anchored News - Search Articles</title> <!--Selective Line Graphing and Mapping-->
-    <!-- GOOGLE CHARTS VERSION
+  <meta charset="utf-8" />
+  <title>Anchored News - Search Articles</title>
+  <!--Selective Line Graphing and Mapping-->
+  <!-- GOOGLE CHARTS VERSION
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>-->
-    <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
 
-    <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
-    <div class="banner">
-        <nav>
-            <ul class="nav">
-                <li><a href="index.html">News</a></li>
-                <li><a href="trends.html">Compare Trends</a></li>
-                <li><a href="search.html" style="border-top: 6px solid #29aceb; height: 13px;">Search</a></li>
-                <li class="title"><a style="overflow-wrap:normal;" href="#index">Anchored News</a></li>
-                <li style="float:right; "><a class="active" href="about.html">About</a></li>
-            </ul>
-        </nav>
+  <div class="banner">
+    <nav>
+      <ul class="nav">
+        <li><a href="index.html">News</a></li>
+        <li>
+          <a href="about.html">About</a>
+        </li>
+        <li><a href="trends.html">Compare Trends</a></li>
+        <li>
+          <a href="search.html" style="border-top: 6px solid #29aceb; height: 13px;">
+            Search
+          </a>
+        </li>
+
+        <li class="title">
+          <a style="overflow-wrap: normal;" href="#index">Anchored News</a>
+        </li>
+        <li style="float: right;">
+          <a href="">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="wrapper">
+    <h1>SEARCH</h1>
+    <div class="margin margin-span">
+      <div class="filter-bar">
+        <input type="text" id="sourceInput" onkeyup="searchFunction()" placeholder="Search for news sources.."
+          title="Type in a name" />
+      </div>
+      <div class="search-result"></div>
     </div>
+  </div>
 
-    <div class="wrapper">
-        <h1>SEARCH</h1>
-        <div class="margin">
-            <div class="feed-span, feed">
-
-
-            </div>
-
-
-        </div>
+  <footer>
+    <div>
+      <div>
+        <p class="footer-body">
+          <br />
+          <br />
+          Footer Stuff
+        </p>
+      </div>
+      <div>
+        <p class="footer">
+          <br />
+          <br />
+          Webpage by Sophia Herman &nbsp; &nbsp;
+        </p>
+      </div>
     </div>
-
-    <footer>
-        <div>
-            <div>
-            <p class="footer-body"><br /> <br />Footer Stuff</p>
-            </div>
-            <div>
-                <p class="footer"><br /> <br />Webpage by Sophia Herman &nbsp; &nbsp;</p> 
-            </div>
-
-        </div>
-    </footer>
+  </footer>
 </body>
+
 </html>

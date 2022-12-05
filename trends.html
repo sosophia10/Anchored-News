@@ -10,8 +10,8 @@
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>-->
     <script src="https://d3js.org/d3.v5.min.js"></script>
 
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/graph.css">
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/graph.css" />
 </head>
 
 <body>
@@ -19,17 +19,30 @@
         <nav>
             <ul class="nav">
                 <li><a href="index.html">News</a></li>
-                <li><a href="trends.html" style="border-top: 6px solid #29aceb; height: 13px;">Compare Trends</a></li>
+                <li>
+                    <a href="about.html">About</a>
+                </li>
+                <li>
+                    <a href="trends.html" style="border-top: 6px solid #29aceb; height: 13px;">
+                        Compare Trends
+                    </a>
+                </li>
                 <li><a href="search.html">Search</a></li>
-                <li class="title"><a style="overflow-wrap:normal;" href="#index">Anchored News</a></li>
-                <li style="float:right; "><a class="active" href="about.html">About</a></li>
+
+                <li class="title">
+                    <a style="overflow-wrap: normal;" href="#index">Anchored News</a>
+                </li>
+                <li style="float: right;">
+                    <a href="">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</a>
+                </li>
             </ul>
         </nav>
 
         <div class="nav" id="message">
             <p class="message">
-                This website project is an ongoing exploration of news bias, data visualization, and media engagement.
-                The below map does not currently reflect real global trends. This may soon be connected with the below
+                This website project is an ongoing exploration of news bias, data
+                visualization, and media engagement. The below map does not currently
+                reflect real global trends. This may soon be connected with the below
                 RSS feeds, as well as other features/changes in consideration.
             </p>
         </div>
@@ -40,7 +53,6 @@
         <!--Map-->
     </div>
     <div class="background-placeholder"></div>
-
 
     <div class="wrapper">
         <h1>COMPARE</h1>
@@ -53,29 +65,37 @@
                     //------------------------1. PREPARATION-------------------------//
                     //-----------------------------SVG-------------------------------//
                     //setup the dimensions of the graph
-                    var width = 960;
-                    var height = 500;
-                    var margin = 5;
-                    var padding = 5;
-                    var adj = 30;
+                    var width = 960
+                    var height = 500
+                    var margin = 5
+                    var padding = 5
+                    var adj = 30
                     // appending the SVG to the div with the div id labeled container
-                    const svg = d3.select("div#container").append("svg")
-                        .attr("preserveAspectRatio", "xMinYMin meet")
-                        .attr("viewBox", "-"
-                            + adj + " -"
-                            + adj + " "
-                            + (width + adj * 3) + " "
-                            + (height + adj * 3))
-                        .style("padding", padding)
-                        .style("margin", margin)
-                        .classed("svg-content", true);
+                    const svg = d3
+                        .select('div#container')
+                        .append('svg')
+                        .attr('preserveAspectRatio', 'xMinYMin meet')
+                        .attr(
+                            'viewBox',
+                            '-' +
+                            adj +
+                            ' -' +
+                            adj +
+                            ' ' +
+                            (width + adj * 3) +
+                            ' ' +
+                            (height + adj * 3),
+                        )
+                        .style('padding', padding)
+                        .style('margin', margin)
+                        .classed('svg-content', true)
 
                     //-----------------------------DATA------------------------------//
                     //parse data and time
-                    const timeConv = d3.timeParse("%d-%b-%Y");
+                    const timeConv = d3.timeParse('%d-%b-%Y')
 
                     //parse dataset
-                    const dataset = d3.csv("data/csv/data.csv"); //-------------DATA INPUT HERE ////// <-------- ////////////// <--------  ////////////// <--------
+                    const dataset = d3.csv('data/csv/data.csv') //-------------DATA INPUT HERE ////// <-------- ////////////// <--------  ////////////// <--------
                     dataset.then(function (data) {
                         const slices = data.columns.slice(1).map(function (id) {
                             return {
@@ -83,141 +103,158 @@
                                 values: data.map(function (d) {
                                     return {
                                         date: timeConv(d.date),
-                                        measurement: +d[id]
-                                    };
-                                })
-                            };
-                        });
+                                        measurement: +d[id],
+                                    }
+                                }),
+                            }
+                        })
 
                         //Print data in browser console
-                        console.log("Column headers", data.columns);
-                        console.log("Column headers without date", data.columns.slice(1));
+                        console.log('Column headers', data.columns)
+                        console.log('Column headers without date', data.columns.slice(1))
                         // returns the sliced dataset
-                        console.log("Slices", slices);
+                        console.log('Slices', slices)
                         // returns the first slice
-                        console.log("First slice", slices[0]);
+                        console.log('First slice', slices[0])
                         // returns the array in the first slice
-                        console.log("A array", slices[0].values);
+                        console.log('A array', slices[0].values)
                         // returns the date of the first row in the first slice
-                        console.log("Date element", slices[0].values[0].date);
+                        console.log('Date element', slices[0].values[0].date)
                         // returns the array's length
-                        console.log("Array length", (slices[0].values).length);
+                        console.log('Array length', slices[0].values.length)
 
                         //----------------------------SCALES-----------------------------//
                         //set the range of the graph
-                        var xScale = d3.scaleTime().range([0, width]);
-                        var yScale = d3.scaleLinear().rangeRound([height, 0]);
-                        xScale.domain(d3.extent(data, function (d) {
-                            return timeConv(d.date)
-                        }));
-                        yScale.domain([(0), d3.max(slices, function (c) {
-                            return d3.max(c.values, function (d) {
-                                return d.measurement + 4;
-                            });
-                        })
-                        ]);
+                        var xScale = d3.scaleTime().range([0, width])
+                        var yScale = d3.scaleLinear().rangeRound([height, 0])
+                        xScale.domain(
+                            d3.extent(data, function (d) {
+                                return timeConv(d.date)
+                            }),
+                        )
+                        yScale.domain([
+                            0,
+                            d3.max(slices, function (c) {
+                                return d3.max(c.values, function (d) {
+                                    return d.measurement + 0
+                                })
+                            }),
+                        ])
 
                         //-----------------------------AXES------------------------------//
-                        var yaxis = d3.axisLeft()
-                            .ticks((slices[0].values).length)
+                        var yaxis = d3
+                            .axisLeft()
+                            .ticks(slices[0].values.length)
                             //.ticks("font-size", 20)
                             //.ticks("fill", "#E3E3E3")
-                            .scale(yScale);
+                            .scale(yScale)
 
-                        var xaxis = d3.axisBottom()
+                        var xaxis = d3
+                            .axisBottom()
                             .ticks(d3.timeDay.every(1))
                             .tickFormat(d3.timeFormat('%b %d'))
-                            
+
                             //.ticks("font-size", 20)
                             //.ticks("fill", "#E3E3E3")
-                            .scale(xScale);
-
+                            .scale(xScale)
 
                         //----------------------------LINES------------------------------//
                         //define axis by data and scale
-                        var line = d3.line()
-                            .x(function (d) { return xScale(d.date); })
-                            .y(function (d) { return yScale(d.measurement); });
+                        var line = d3
+                            .line()
+                            .x(function (d) {
+                                return xScale(d.date)
+                            })
+                            .y(function (d) {
+                                return yScale(d.measurement)
+                            })
 
                         //start at zero
-                        let id = 0;
+                        let id = 0
                         var ids = function () {
-                            return "line-" + id++;
+                            return 'line-' + id++
                         }
 
                         //-------------------------2. DRAWING----------------------------//
 
                         //-----------------------------AXES------------------------------//
-                        svg.append("g")
-                            .attr("class", "axis")
-                            .attr("transform", "translate(0," + height + ")")
-                            .call(xaxis);
+                        svg
+                            .append('g')
+                            .attr('class', 'axis')
+                            .attr('transform', 'translate(0,' + height + ')')
+                            .call(xaxis)
 
-                            
-
-
-                        svg.append("g")
-                            .attr("class", "axis")
+                        svg
+                            .append('g')
+                            .attr('class', 'axis')
                             .call(yaxis)
-                            .append("text")
-                            .attr("transform", "rotate(-90)")
-                            .attr("dy", ".75em")
-                            .attr("y", 6)
-                            .style("text-anchor", "end")
-                            .text("Frequency of Publications");
+                            .append('text')
+                            .attr('transform', 'rotate(-90)')
+                            .attr('dy', '.75em')
+                            .attr('y', 6)
+                            .style('text-anchor', 'end')
+                            .text('Frequency of Publications')
 
                         //----------------------------LINES------------------------------//
-                        const lines = svg.selectAll("lines")
+                        const lines = svg
+                            .selectAll('lines')
                             .data(slices)
                             .enter()
-                            .append("g");
+                            .append('g')
 
-                        lines.append("path")
-                            .attr("class", ids)
-                            .attr("d", function (d) { return line(d.values); });
+                        lines
+                            .append('path')
+                            .attr('class', ids)
+                            .attr('d', function (d) {
+                                return line(d.values)
+                            })
 
-                        lines.append("text")
-                            .attr("class", "serie_label")
+                        lines
+                            .append('text')
+                            .attr('class', 'serie_label')
                             .datum(function (d) {
                                 return {
                                     id: d.id,
-                                    value: d.values[d.values.length - 1]
-                                };
+                                    value: d.values[d.values.length - 1],
+                                }
                             })
-                            .attr("transform", function (d) {
-                                return "translate(" + (xScale(d.value.date) + 10)
-                                    + "," + (yScale(d.value.measurement) + 5) + ")";
+                            .attr('transform', function (d) {
+                                return (
+                                    'translate(' +
+                                    (xScale(d.value.date) + 10) +
+                                    ',' +
+                                    (yScale(d.value.measurement) + 5) +
+                                    ')'
+                                )
                             })
-                            .attr("x", 5)
-                            .text(function (d) { return ("Source ") + d.id; });
-                    });
-
+                            .attr('x', 5)
+                            .text(function (d) {
+                                return 'Source ' + d.id
+                            })
+                    })
                 </script>
-
             </div>
-
-
         </div>
-
-
-
-
-
-
     </div>
 
     <footer>
         <div>
             <div>
-            <p class="footer-body"><br /> <br />Footer Stuff</p>
+                <p class="footer-body">
+                    <br />
+                    <br />
+                    Footer Stuff
+                </p>
             </div>
             <div>
-                <p class="footer"><br /> <br />Webpage by Sophia Herman &nbsp; &nbsp;</p> 
+                <p class="footer">
+                    <br />
+                    <br />
+                    Webpage by Sophia Herman &nbsp; &nbsp;
+                </p>
             </div>
-
         </div>
     </footer>
-
 </body>
 
 </html>
