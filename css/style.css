@@ -130,6 +130,111 @@ ul.nav>li a:active {
 }
 
 
+.pop-up {
+
+cursor: pointer;
+display: none; }
+
+.pop-up.open { display: block; }
+
+.blocker {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  content: ' ';
+  background: rgba(103, 148, 220, 0.2);
+}
+
+.pop-up .contents {
+  z-index: 100;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 600px;
+  min-width: 400px;
+  margin: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFF;
+  position: fixed;
+  right: 25%;
+  top: 22%;
+  
+
+}
+
+/*Event Popups*/
+#triangle{
+  z-index: 1;
+position:fixed;
+clip-path: polygon(0 0, 50% 100%, 100% 0);
+
+}
+
+.pinned {
+  right: 40%;
+  top: 50%;
+
+}
+
+.pin-background{
+
+  width: 60px;
+  height: 40px;
+  background-color: #E3E3E3;
+  padding-top: 5px;
+  text-align: center;
+  font-weight: 700;
+  color: rgb(200,30,50);
+}
+
+.pin-background:hover {
+  right: 40%;
+  top: 50%;
+  width: 64px;
+  height: 44px;
+  background-color: #ddb2b2;
+  padding-top: 5px;
+  font-size:larger;
+  text-align: center;
+  font-weight: 700;
+  color: rgb(199, 42, 60);
+}
+
+.unpinned {
+  right: 50%;
+  top: 50%;
+
+  }
+
+  .unpin-background {
+    width: 60px;
+    height: 40px;
+    background-color: rgb(200,30,50);
+    padding-top: 5px;
+    text-align: center;
+    font-weight: 700;
+    color: #E3E3E3;
+  
+    }
+
+  .unpin-background:hover {
+    right: 50%;
+    top: 50%;
+    width: 64px;
+    height: 44px;
+    background-color: rgb(255, 121, 136);
+    padding-top: 5px;
+    font-size:larger;
+    text-align: center;
+    font-weight: 700;
+    color: #E3E3E3;
+    }
+
+
 /*Map Control Box*/
 #control {
   font-family: "Helvetica Neue", Helvetica, sans-serif;
@@ -149,7 +254,6 @@ ul.nav>li a:active {
 
 #control .item input {
   background: rgba(103, 148, 220, 0.2);
-  /*---------------------*/
   width: 60%;
 }
 
@@ -299,7 +403,7 @@ ul.nav>li a:active {
   background: #E3E3E3;
 }
 
-/* Handle on hover */
+
 #sources::-webkit-scrollbar-thumb:hover {
   background: #CCC;
 }
@@ -588,8 +692,8 @@ ul.list li {
 .about-tabs {
   position: absolute;
   z-index: 9;
-  top: 30.5%;
-  bottom: 0%;
+  top: 300px;
+
 }
 
 .accordion {
@@ -653,8 +757,7 @@ ul.list li {
   transform: rotate(180deg);
 }
 
-/**
- * Submenu
+/*----------Submenu
  -----------------------------*/
 
 
