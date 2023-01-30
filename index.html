@@ -15,8 +15,12 @@
 
     <script src="//d3js.org/d3-geo-projection.v1.min.js"></script>
     <script src="//d3js.org/topojson.v2.min.js"></script>-->
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <script src="https://unpkg.com/topojson@3"></script>
+  <script src="https://unpkg.com/d3-geo-projection"></script>
 
   <!--Draggable Div with JQuery-->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
   <script>
@@ -26,10 +30,24 @@
   </script>
 
   <link rel="stylesheet" href="css/style.css" />
+
+  <!--Map using OpenLayers-->
+  <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
+  <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/css/ol.css"
+    type="text/css" />
+
+  <!--Header Font: Questrial-->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Questrial&display=swap');
+  </style>
 </head>
 
 <body>
+  <!-------------------------------Top of Page Begin----------------------------------------->
+
   <div class="banner">
+    <!-------------------------------Navigation Deck Begin----------------------------------------->
+
     <nav>
       <ul class="nav">
         <li>
@@ -52,20 +70,31 @@
       </ul>
     </nav>
 
+    <!-------------------------------Navigation Deck End----------------------------------------->
+
     <div class="nav" id="message">
       <p class="message">
-        This website project is an ongoing exploration of news bias, data
-        visualization, and user engagement. The below maps/graphs will soon be
-        connected to live feeds intended to reflect global media bias and
-        trends.
+        Anchored News is an ongoing exploration of news content, data visualization,
+        and user engagement. Maps/graphs could soon be connected to live news
+        publications. The intention of this platform is to aid visual
+        discovery of global media, trends, and bias.
       </p>
     </div>
   </div>
+
+  <!-------------------------------Top of Page End----------------------------------------->
+
+  <!-------------------------------Body Begin----------------------------------------->
+
+  <!-------------------------------Map Begin----------------------------------------->
+
+  <!-------------------------------Map Controls Begin----------------------------------------->
 
   <!--<script src="https://d3js.org/d3.v4.min.js"></script>-->
   <script type="text/javascript" src="js/mapcontrol.js"></script>
   <!--Map Control Box-->
   <div id="control">
+    <div id="selected-country"></div> <!--DISPLAY NAME OF COUNTRY BEING HOVERED-->
     <div id="controlmap" class="margin">
       <div id="controlbox" class="feed-span control">
         <!--Map Toggle-->
@@ -194,23 +223,79 @@
     </div>
   </div>
 
+  <!-------------------------------Map Controls End----------------------------------------->
+
+  <!-------------------------------Events Pins Begin----------------------------------------->
+
+  <!--
+    <div class="event-pins">
+      <ul class="events" style="list-style: none;">
+        <li class="event" id="event">
+          <button
+            style="border: none;"
+            id="triangle"
+            class="unpinned unpin-background"
+            onclick="showEventFeed()"
+          >
+            1
+          </button>
+          <div class="pop-up" id="1">
+            <div class="blocker" onclick="hideEventFeed()"></div>
+            <div class="contents" data-for="1">Something</div>
+          </div>
+        </li>
+        <li class="event" id="event">
+          <button
+            style="border: none;"
+            id="triangle"
+            class="pinned pin-background"
+            onclick="showEventFeed()"
+          >
+            2
+          </button>
+          <div class="pop-up" id="2">
+            <div class="blocker" onclick="hideEventFeed()"></div>
+            <div class="contents" data-for="2">Something else</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <script>
+      ///I wrote this myself and it's atrocious
+      const one = document.getElementById('1')
+      const two = document.getElementById('2')
+      const popupbox = document.querySelector('.pop-up')
+      const content = document.querySelector('.contents')
+
+      function showEventFeed() {
+        popupbox.classList.add('open')
+      }
+      function hideEventFeed() {
+        popupbox.classList.remove('open')
+      }
+
+    </script>-->
+
+  <!-------------------------------Events Pins End----------------------------------------->
+
   <!--Draggable Function for Control Box
     <script type="text/javascript" src="../js/draggable.js"></script>-->
 
-  <!--D3 MAPS IN BACKGROUND-->
+  <!-------------------------------Map Controls End----------------------------------------->
 
+  <!--D3 MAP IN BACKGROUND-->
   <div class="feed-background">
     <!--Globe - Needs to change geojson var
-        <div class="map" id="mapidglobe" style="text-align:center; padding-top: 100px;">
-            <canvas width="950" height="1000"></canvas>
-        </div>-->
+    <div class="map" id="mapidglobe" style="text-align:center; padding-top: 100px;">
+        <canvas width="950" height="1000"></canvas>
+    </div>-->
 
     <!-- Flat Map 
-        <div class="map" id="mapidflat" style="background-image: url('images/map.png'); height: 750px;"></div>-->
+    <div class="map" id="mapidflat" style="background-image: url('images/map.png'); height: 750px;"></div>-->
 
     <svg width="100%" height="800px" class="map" style="text-align: center; margin-top: 100px; overflow: visible;">
       <g class="graticule">
-        <path></path>
+        <path class="country"></path>
       </g>
       <g class="circles"></g>
       <g class="map"></g>
@@ -219,113 +304,205 @@
 
     <script src="js/d3.min.js"></script>
 
-    <!--<script type="text/javascript" src="../js/globemap.js"></script>-->
-
     <script type="text/javascript" src="js/maps.js"></script>
   </div>
   <div class="background-placeholder"></div>
 
+  <!--OPENLAYERS MAP IN BACKGROUND-->
+  <!--  <div id="map" class="map"></div>
+    <div id="overlay"></div>
+    
+    <script>
+    var map = new ol.Map({
+      target: 'map',
+      layers: [
+        new ol.layer.Tile({
+          source: new ol.source.OSM()
+        })
+      ],
+      view: new ol.View({
+        center: ol.proj.fromLonLat([37.41, 8.82]),
+        zoom: 4
+      })
+    });
+    
+    var vectorSource = new ol.source.Vector({
+      url: 'https://openlayers.org/en/v4.6.5/examples/data/geojson/countries.geojson',
+      format: new ol.format.GeoJSON()
+    });
+    
+    var vectorLayer = new ol.layer.Vector({
+      source: vectorSource,
+      style: new ol.style.Style({
+        stroke: new ol.style.Stroke({
+          color: 'rgba(0, 0, 255, 0.1)',
+          width: 2
+        })
+      })
+    });
+    
+    map.addLayer(vectorLayer);
+    
+    var overlay = new ol.Overlay({
+      element: document.getElementById('overlay')
+    });
+    
+    map.addOverlay(overlay);
+    
+    // display overlay on click
+    map.on('click', function(evt) {
+      var feature = map.forEachFeatureAtPixel(evt.pixel,
+          function(feature) {
+            return feature;
+          });
+      if (feature) {
+        var coordinates = feature.getGeometry().getCoordinates();
+        overlay.setPosition(coordinates);
+        document.getElementById('overlay').innerHTML = feature.get('name');
+      } else {
+        document.getElementById('overlay').innerHTML = "";
+      }
+    });
+    </script>
+    -->
+
+  <!-------------------------------Map End----------------------------------------->
+
+  <!--<div class="background-placeholder"></div>-->
+  <script>
+    async function main() {
+      async function giveMeDataAbout(thing, apiKey) {
+        return await fetch(`https://newsapi.org/v2/everything?q=${thing}&apiKey=${apiKey}`)
+          .then(response => response.json())
+          .then(data => {
+            return data.articles
+          });
+      }
+
+      var articles = await giveMeDataAbout('cars', '631dc06585164470aacefd1118f11c15');
+      for (var i = 0; i < articles.length; i++) {
+        console.log(articles[i].title);
+        console.log(articles[i].source.name);
+        console.log(articles[i].publishedAt);
+        console.log(articles[i].source.country);
+        //console.table(articles, ['source.id','publishedAt','country']);
+      }
+    }
+    main();
+  </script>
+
+
+  <script>
+    async function maintwo() {
+      async function giveMeDataAbout(thing, apiKey) {
+        return await fetch(`https://newsapi.org/v2/top-headlines/sources?apiKey=${apiKey}`)
+          .then(response => response.json())
+          .then(data => {
+            return data.articles
+          });
+      }
+
+      var articles = await giveMeDataAbout('631dc06585164470aacefd1118f11c15');
+      for (var i = 0; i < articles.length; i++) {
+        console.log(articles[i].source.name);
+        console.log(articles[i].source.country);
+        //console.table(articles, ['source.id','publishedAt','country']);
+      }
+    }
+    maintwo();
+  </script>
+
+  <!-------------------------------Filters Begin----------------------------------------->
+
   <div class="wrapper">
     <h1>NEWS FEED FILTER</h1>
     <div class="margin">
+
+
       <div class="feed-span, feed">
-        <input type="text" id="sourceInput" onkeyup="searchFunction()" placeholder="Search for news sources..."
-          title="Type in a name" />
 
-        <ul id="sources">
-          <li><a id="source" class="source">Reports Pro</a></li>
-          <li><a id="source" class="source">BBC</a></li>
 
-          <li><a id="source" class="source">Newszilla</a></li>
-          <li><a id="source" class="source">Newslux</a></li>
+        <!--SCRIPT MAKES SELECTED SOURCES APPEAR WITHIN THIS DIV-->
+        <div id="feed-grid" class="feed-grid"></div>
 
-          <li><a id="source" class="source">AuthenticNews</a></li>
-          <li><a id="source" class="source">FrontNews</a></li>
-          <li><a id="source" class="source">Newslia</a></li>
-        </ul>
+          <div id="searchInputs">
+          <input type="text" id="sourceInput" onkeyup="searchFunction()" placeholder="Search for news sources..."
+            title="Type in a name" />
+          <input type="text" id="dateInputMin" placeholder="From: MM/DD/YYYY"
+            pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d">
+            <input type="text" id="dateInputMax" placeholder="Until: MM/DD/YYYY"
+            pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d">
+          <!--<div class="feed"></div>-->
+        </div>
+
+
+        <div style="width:span; margin-top:2px">
+
+          <ul id="sources">
+            <li><a id="source" class="source">Reports Pro</a></li>
+            <li><a id="source" class="source">BBC</a></li>
+            <li><a id="source" class="source">NBC</a></li>
+            <li><a id="source" class="source">Newszilla</a></li>
+            <li><a id="source" class="source">Newslux</a></li>
+            <li><a id="source" class="source">CNN</a></li>
+            <li><a id="source" class="source">AuthenticNews</a></li>
+            <li><a id="source" class="source">FrontNews</a></li>
+            <li><a id="source" class="source">Newslia</a></li>
+          </ul>
+        </div>
       </div>
-
+      <!--sources searching amd selection function-->
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <script>
-        //search function, sort with typing
-        function searchFunction() {
-          var input, filter, ul, li, a, i, txtValue
-          input = document.getElementById('sourceInput')
-          filter = input.value.toUpperCase()
-          ul = document.getElementById('sources')
-          li = ul.getElementsByTagName('li')
-          for (i = 0; i < li.length; i++) {
-            a = li[i].getElementsByTagName('a')[0]
-            txtValue = a.textContent || a.innerText
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-              li[i].style.display = ''
-            } else {
-              li[i].style.display = 'none'
+        $(document).ready(function () {
+          $("#sourceInput").on("keyup", function () {
+            var value = $(this).val().toUpperCase();
+            $("#sources li").filter(function () {
+              $(this).toggle($(this).text().toUpperCase().indexOf(value) > -1)
+            });
+          });
+          $("#sources").on("click", "li", function () {
+            var source = $(this).find("a").text();
+            if (!$("#feed-grid").find("." + source).length) {
+              $("#feed-grid").append("<div class='feed " + source + "'>" + source + "</div>");
+              $(this).hide();
             }
-          }
-        }
-        //append source name in div to feed-grid Id
-        var source
-        source = document.getElementsByClassName('source')
-        Array.prototype.forEach.call(source, function (element) {
-          element.addEventListener('click', () => {
-            document.getElementById(
-              'feed-grid',
-            ).innerHTML += `<div class="feed">${element.text}</div>`
-          })
-
-          //source disappears after selection (Needs Fixing)
-          $('#sources').change(function () {
-            $('#source').addClass('hidden')
-          })
-        })
+          });
+          $("#feed-grid").on("click", ".feed", function () {
+            var source = $(this).text();
+            $("#sources").find("a:contains(" + source + ")").parent().show();
+            $(this).remove();
+          });
+        });
       </script>
-      <!--SCRIPT MAKES NAMES APPEAR BELOW WITHIN A DIV-->
-      <div id="feed-grid" class="feed-grid">
-        <!--<div class="feed"></div>-->
-      </div>
+      <!--date input function-->
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+      <script>
+        $(document).ready(function () {
+          $("#dateInputMin").datepicker({
+            dateFormat: "mm/dd/yy"
+          });
+        });
 
-      <div class="feed-span, feed"></div>
+        $(document).ready(function () {
+          $("#dateInputMax").datepicker({
+            dateFormat: "mm/dd/yy"
+          });
+        });
+      </script>
+
+
+
     </div>
   </div>
-  <div class="background-placeholder"></div>
-  <!-------------------------------Duplicated Section----------------------------------------->
-  <div class="wrapper">
-    <h1>NEWS FEED SELECTOR #2</h1>
-    <div class="margin">
-      <div class="feed-span, feed">
-        <!--
-                <script>
-                    var url = 'https://newsapi.org/v2/everything?' +
-                        'q=Apple&' +
-                        'from=2022-11-01&' +
-                        'sortBy=popularity&' +
-                        'apiKey=631dc06585164470aacefd1118f11c15';
 
-                    var req = new Request(url);
 
-                    fetch(req)
-                        .then(function (response) {
-                            console.log(response.json());
-                        })
-                </script>-->
-      </div>
-      <div class="feed-grid"></div>
+  <!-------------------------------Filters End----------------------------------------->
 
-      <div class="feed-span feed">
-        <!--
-                <script>
-                    var url = 'https://newsapi.org/v2/top-headlines?' +
-                        'sources=bbc-news&' +
-                        'apiKey=631dc06585164470aacefd1118f11c15';
-                    var req = new Request(url);
-                    fetch(req)
-                        .then(function (response) {
-                            console.log(response.json());
-                        })
-                </script>-->
-      </div>
-    </div>
-  </div>
+  <!-------------------------------Body End----------------------------------------->
+
+  <!-------------------------------Footer Begin----------------------------------------->
 
   <footer>
     <div>
