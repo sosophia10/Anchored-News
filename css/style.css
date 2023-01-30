@@ -423,6 +423,7 @@ clip-path: polygon(0 0, 50% 100%, 100% 0);
   margin-bottom: 12px;
   margin-top: 12px;
   margin-left: -4px;
+  margin-right: 12px;
   max-height: 20px;
 }
 
