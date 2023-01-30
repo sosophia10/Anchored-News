@@ -35,6 +35,7 @@ var geoCircle = d3.geoCircle().radius(10).precision(1);
 let windowh = window.innerHeight;
 let windoww = window.innerWidth;
 
+
 var state = {
   type: 'Equirectangular',
   scale: 250,
@@ -70,6 +71,7 @@ function initcontrol() {
     .text(function(d) {return d;});
 }
 
+
 function update() {
   // Update projection
   projection = d3['geo' + state.type]()
@@ -83,46 +85,65 @@ function update() {
 
   // Update world map
   var u = d3.select('g.map')
-    .selectAll('path')
-    .data(geojson.features)
+  .selectAll('path')
+  .data(geojson.features)
 
-  u.enter()
-    .append('path')
-    .merge(u)
-    .attr('d', geoGenerator)
+u.enter()
+  .append('path')
+  .merge(u)
+  .attr('d', geoGenerator)
+  .attr('class', 'country')
+  .on('mouseover', function(d) {
+    d3.select(this).style('cursor', 'pointer');
+    d3.select('body').append('div')
+      .attr('class', 'tooltip')
+      .style('left', (d3.event.pageX + 10) + 'px')
+      .style('top', (d3.event.pageY - 10) + 'px')
+      .style('display', 'inline-block')
+      .html(d.properties.name);
+});
 
-  // Update projection center
-  var projectedCenter = projection([state.centerLon, state.centerLat]);
-  d3.select('.projection-center')
-    .attr('cx', projectedCenter[0])
-    .attr('cy', projectedCenter[1]);
 
-  // Update graticule
-  d3.select('.graticule path')
-    .datum(graticule())
-    .attr('d', geoGenerator);
 
-  // Update circles
-  u = d3.select('.circles')
-    .selectAll('path')
-    .data(circles.map(function(d) {
-      geoCircle.center(d);
-      return geoCircle();
-    }));
+// Update projection center
+var projectedCenter = projection([state.centerLon, state.centerLat]);
+d3.select('.projection-center')
+.attr('cx', projectedCenter[0])
+.attr('cy', projectedCenter[1]);
 
-  u.enter()
-    .append('path')
-    .merge(u)
-    .attr('d', geoGenerator);
+// Update graticule
+d3.select('.graticule path')
+.datum(graticule())
+.attr('d', geoGenerator);
+
+// Update circles
+u = d3.select('.circles')
+.selectAll('path')
+.data(circles.map(function(d) {
+geoCircle.center(d);
+return geoCircle();
+}));
+
+u.enter()
+.append('path')
+.merge(u)
+.attr('d', geoGenerator);
 }
+
+
+
 
 //source:
 //https://gist.github.com/d3indepth/f28e1c3a99ea6d84986f35ac8646fac7#file-ne_110m_land-json
-d3.json('https://gist.githubusercontent.com/d3indepth/f28e1c3a99ea6d84986f35ac8646fac7/raw/c58cede8dab4673c91a3db702d50f7447b373d98/ne_110m_land.json', function(err, json) {
-  geojson = json;
-  initcontrol();
-  update();
-})
+//d3.json('https://gist.githubusercontent.com/d3indepth/f28e1c3a99ea6d84986f35ac8646fac7/raw/c58cede8dab4673c91a3db702d50f7447b373d98/ne_110m_land.json', function(err, json) {
+//d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson").then(function(data) {
+d3.json("https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json", function(error, data) { 
+
+    geojson = data;
+    initcontrol();
+    update();
+  });
+
 
 //potential source
 //https://github.com/lutangar/cities.json
