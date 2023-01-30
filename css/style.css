@@ -1,7 +1,7 @@
 ﻿/*applied to all paged*/
 
 body {
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-family: 'Questrial', "Helvetica Neue", Helvetica, sans-serif;
   /*Backgrund Color Gradient*/
   background-image: linear-gradient(#030609, #214263);
   background-repeat: no-repeat;
@@ -28,13 +28,17 @@ html {
 h1 {
   color: #E3E3E3;
   text-align: center;
-  font-family: Helvetica, sans-serif;
+  font-family: 'Questrial', "Helvetica Neue", Helvetica, sans-serif;
   /*Uppercase text in headings*/
   text-transform: uppercase;
 }
 
 p {
-  font-family: Helvetica, sans-serif;
+  font-family: 'Questrial', "Helvetica Neue", Helvetica, sans-serif;
+}
+
+p.news {
+  font-family: 'Merriweather', serif;
 }
 
 
@@ -48,7 +52,7 @@ nav {
 }
 
 .nav {
-  font-family: Helvetica, sans-serif;
+  font-family: 'Questrial', "Helvetica Neue", Helvetica, sans-serif;
 }
 
 ul.nav {
@@ -110,12 +114,15 @@ ul.nav>li a:active {
   background-color: transparent;
 }
 
-.map {
+#map {
   width: 100%;
   height: 100%;
 
   /*background-repeat: repeat-x;*/
 }
+
+
+
 
 #globe {
   cursor: move;
@@ -124,7 +131,8 @@ ul.nav>li a:active {
 #current {
   position: absolute;
   color: white;
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  /*font-family: "Helvetica Neue", Helvetica, sans-serif;*/
+  font-family: 'Merriweather', serif;
   margin-left: 4%;
   margin-top: 4%;
 }
@@ -162,8 +170,6 @@ display: none; }
   position: fixed;
   right: 25%;
   top: 22%;
-  
-
 }
 
 /*Event Popups*/
@@ -237,7 +243,7 @@ clip-path: polygon(0 0, 50% 100%, 100% 0);
 
 /*Map Control Box*/
 #control {
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-family: 'Questrial', "Helvetica Neue", Helvetica, sans-serif;
   position: absolute;
   padding: 10px;
   height: auto;
@@ -362,7 +368,7 @@ clip-path: polygon(0 0, 50% 100%, 100% 0);
 /* Track */
 ::-webkit-scrollbar-track {
   background-image: linear-gradient(#E3E3E3);;
-}
+}input
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
@@ -378,20 +384,66 @@ clip-path: polygon(0 0, 50% 100%, 100% 0);
   display: none;
 }
 
-/*Search Style*/
-#sourceInput {
 
-  background-image: url('../images/searchicon.png');
-  background-size: 20px;
+#searchInputs{
+  margin-top:10px;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+}
+
+#dateInputMin {
+
+  background-size: 25px;
   background-position: 10px 10px;
   background-repeat: no-repeat;
   background-color: rgba(103, 148, 220, 0.5);
   width: span;
   font-size: 16px;
-  padding: 12px 20px 12px 40px;
+  padding: 15px 40px 15px 40px;
   border: 1px solid rgba(103, 148, 220, 0.5);
   color: #E3E3E3;
   margin-bottom: 12px;
+  margin-top: 12px;
+  margin-left: -3px;
+  max-height: 20px;
+}
+
+#dateInputMax {
+
+  background-size: 25px;
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  background-color: rgba(103, 148, 220, 0.5);
+  width: span;
+  font-size: 16px;
+  padding: 15px 40px 15px 40px;
+  border: 1px solid rgba(103, 148, 220, 0.5);
+  color: #E3E3E3;
+  margin-bottom: 12px;
+  margin-top: 12px;
+  margin-left: -4px;
+  max-height: 20px;
+}
+
+/*Search Style*/
+#sourceInput {
+
+  background-image: url('../images/searchicon.png');
+  background-size: 25px;
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  background-color: rgba(103, 148, 220, 0.5);
+  width: 100%;
+  min-width: 200px;
+  font-size: 16px;
+  padding: 15px 40px 15px 40px;
+  border: 1px solid rgba(103, 148, 220, 0.5);
+  color: #E3E3E3;
+  margin-bottom: 12px;
+  margin-top: 12px;
+  margin-left: 12px;
+  max-height: 20px;
 }
 
 #sources::-webkit-scrollbar-track {
@@ -415,7 +467,7 @@ clip-path: polygon(0 0, 50% 100%, 100% 0);
 #sources {
   height: 100px;
   overflow: auto;
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-family: 'Questrial', "Helvetica Neue", Helvetica, sans-serif;
   list-style-type: none;
   padding: 0;
   margin: 0;
@@ -436,6 +488,7 @@ clip-path: polygon(0 0, 50% 100%, 100% 0);
 #sources li a:hover:not(.header) {
   background-color: #E3E3E3;
   color: #030609;
+  cursor:pointer;
 }
 
 /*Buttons Style*/
@@ -468,7 +521,7 @@ button {
 .wrapper {
   width: 100%;
   height: 100%;
-  margin-bottom: 250px;
+  margin-bottom: 0px;
 
 }
 
@@ -512,7 +565,7 @@ button {
 
 
 .margin-span {
-  width: 100%;
+  width: span;
   display: inline-flex;
 
 }
@@ -538,28 +591,51 @@ button {
 
 
 .feed-grid {
-  width: span;
+  width: calc(100%);
   display: inline-flex;
   flex-wrap: wrap;
+  margin-top:2px;
+  max-height: 50px;
+  padding: 10px;
+
+}
+
+.feed>.feed-grid {
+
+
+padding: 10px;
 }
 
 
 .feed-grid>div {
-  margin: min(.1vh, 0.002%);
+  margin: min(0.1vh, 0.002%);
   margin: max(1vh, 2%);
   /* margin: clamp(10px, 5vw, 20px);*/
 }
 
 .feed {
-  padding: 10px;
+  width: span;
+  padding: 0 10 0 10px;
   background-color: #1E3C5A;
   color: #E3E3E3;
 
 }
 
-footer {}
+.feed-grid>.feed:hover {
+  width: span;
+  padding: 0 10 0 10px;
+  background-color: #1E3C5A;
+  color: #E3E3E3;
+  text-decoration: line-through;
+  cursor:pointer;
+}
+
+footer {
+
+}
 
 .footer-body {
+
   font-size: 18px;
   height: 400px;
   width: span;
@@ -579,6 +655,7 @@ p.footer-body {
 .footer>div {}
 
 .footer {
+  
   font-size: 18px;
   height: 60px;
   width: span;
@@ -616,7 +693,7 @@ p.footer {
 }
 
 #coord {
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-family: 'Questrial', "Helvetica Neue", Helvetica, sans-serif;
   font-size: 16px;
   margin: 0px;
 }
@@ -643,6 +720,12 @@ p.footer {
   fill: none;
   stroke: #E3E3E3;
 }
+
+.map:hover {
+  fill: red;
+}
+
+
 
 /*------------Marquee------------*/
 
