@@ -1,4 +1,11 @@
-﻿/*applied to all paged*/
+﻿/*applied to all pages*/
+
+/*Constant-----------------------------------------*/
+.hidden {
+  display: none;
+}
+
+/*Constant End-----------------------------------------*/
 
 body {
   font-family: 'Questrial', "Helvetica Neue", Helvetica, sans-serif;
@@ -9,8 +16,6 @@ body {
   background-attachment: fixed;
 
 }
-
-
 
 html {
   min-height: 100%;
@@ -40,8 +45,6 @@ p {
 p.news {
   font-family: 'Merriweather', serif;
 }
-
-
 
 nav {
   padding-bottom: 40px;
@@ -114,16 +117,16 @@ ul.nav>li a:active {
   background-color: transparent;
 }
 
+
+/*Map and Globe-----------------------------------------*/
+  /*On Home and Trends*/
 #map {
   width: 100%;
   height: 100%;
-
   /*background-repeat: repeat-x;*/
 }
 
-
-
-
+  /*On About*/
 #globe {
   cursor: move;
 }
@@ -136,14 +139,17 @@ ul.nav>li a:active {
   margin-left: 4%;
   margin-top: 4%;
 }
+/*Map End-----------------------------------------*/
 
-
+/*Event Popups-----------------------------------------*/
 .pop-up {
+  cursor: pointer;
+  display: none;
+}
 
-cursor: pointer;
-display: none; }
-
-.pop-up.open { display: block; }
+.pop-up.open {
+  display: block;
+}
 
 .blocker {
   position: fixed;
@@ -172,11 +178,10 @@ display: none; }
   top: 22%;
 }
 
-/*Event Popups*/
-#triangle{
+#triangle {
   z-index: 1;
-position:fixed;
-clip-path: polygon(0 0, 50% 100%, 100% 0);
+  position: fixed;
+  clip-path: polygon(0 0, 50% 100%, 100% 0);
 
 }
 
@@ -186,7 +191,7 @@ clip-path: polygon(0 0, 50% 100%, 100% 0);
 
 }
 
-.pin-background{
+.pin-background {
 
   width: 60px;
   height: 40px;
@@ -194,7 +199,7 @@ clip-path: polygon(0 0, 50% 100%, 100% 0);
   padding-top: 5px;
   text-align: center;
   font-weight: 700;
-  color: rgb(200,30,50);
+  color: rgb(200, 30, 50);
 }
 
 .pin-background:hover {
@@ -204,7 +209,7 @@ clip-path: polygon(0 0, 50% 100%, 100% 0);
   height: 44px;
   background-color: #ddb2b2;
   padding-top: 5px;
-  font-size:larger;
+  font-size: larger;
   text-align: center;
   font-weight: 700;
   color: rgb(199, 42, 60);
@@ -214,34 +219,34 @@ clip-path: polygon(0 0, 50% 100%, 100% 0);
   right: 50%;
   top: 50%;
 
-  }
+}
 
-  .unpin-background {
-    width: 60px;
-    height: 40px;
-    background-color: rgb(200,30,50);
-    padding-top: 5px;
-    text-align: center;
-    font-weight: 700;
-    color: #E3E3E3;
-  
-    }
+.unpin-background {
+  width: 60px;
+  height: 40px;
+  background-color: rgb(200, 30, 50);
+  padding-top: 5px;
+  text-align: center;
+  font-weight: 700;
+  color: #E3E3E3;
 
-  .unpin-background:hover {
-    right: 50%;
-    top: 50%;
-    width: 64px;
-    height: 44px;
-    background-color: rgb(255, 121, 136);
-    padding-top: 5px;
-    font-size:larger;
-    text-align: center;
-    font-weight: 700;
-    color: #E3E3E3;
-    }
+}
 
+.unpin-background:hover {
+  right: 50%;
+  top: 50%;
+  width: 64px;
+  height: 44px;
+  background-color: rgb(255, 121, 136);
+  padding-top: 5px;
+  font-size: larger;
+  text-align: center;
+  font-weight: 700;
+  color: #E3E3E3;
+}
+/*Event Popups End-----------------------------------------*/
 
-/*Map Control Box*/
+/*Map Control Box-----------------------------------------*/
 #control {
   font-family: 'Questrial', "Helvetica Neue", Helvetica, sans-serif;
   position: absolute;
@@ -358,8 +363,9 @@ clip-path: polygon(0 0, 50% 100%, 100% 0);
 
 }
 
-/*scrollbar*/
+/*Map Control Box End-----------------------------------------*/
 
+/*Webpage Scrollbar-----------------------------------------*/
 /* width */
 ::-webkit-scrollbar {
   width: 1VW;
@@ -367,8 +373,8 @@ clip-path: polygon(0 0, 50% 100%, 100% 0);
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background-image: linear-gradient(#E3E3E3);;
-}input
+  background-image: linear-gradient(#E3E3E3);
+}
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
@@ -379,14 +385,13 @@ clip-path: polygon(0 0, 50% 100%, 100% 0);
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(103, 148, 220, 0.5);
 }
-
-.hidden {
-  display: none;
-}
+/*Webpage Scrollbar End-----------------------------------------*/
 
 
-#searchInputs{
-  margin-top:10px;
+
+
+#searchInputs {
+  margin-top: 10px;
   display: flex;
   flex-wrap: nowrap;
   overflow-x: scroll;
@@ -489,7 +494,7 @@ clip-path: polygon(0 0, 50% 100%, 100% 0);
 #sources li a:hover:not(.header) {
   background-color: #E3E3E3;
   color: #030609;
-  cursor:pointer;
+  cursor: pointer;
 }
 
 /*Buttons Style*/
@@ -523,6 +528,7 @@ button {
   width: 100%;
   height: 100%;
   margin-bottom: 0px;
+  z-index: 3;
 
 }
 
@@ -547,6 +553,7 @@ button {
   top: 80px;
   width: span;
   height: 750px;
+
 }
 
 .margin {
@@ -595,7 +602,7 @@ button {
   width: calc(100%);
   display: inline-flex;
   flex-wrap: wrap;
-  margin-top:2px;
+  margin-top: 2px;
   max-height: 50px;
   padding: 10px;
 
@@ -604,7 +611,7 @@ button {
 .feed>.feed-grid {
 
 
-padding: 10px;
+  padding: 10px;
 }
 
 
@@ -628,12 +635,10 @@ padding: 10px;
   background-color: #1E3C5A;
   color: #E3E3E3;
   text-decoration: line-through;
-  cursor:pointer;
+  cursor: pointer;
 }
 
-footer {
-
-}
+footer {}
 
 .footer-body {
 
@@ -656,7 +661,7 @@ p.footer-body {
 .footer>div {}
 
 .footer {
-  
+
   font-size: 18px;
   height: 60px;
   width: span;
