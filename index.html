@@ -5,41 +5,30 @@
 <head>
   <meta charset="utf-8" />
   <title>Anchored News - News Today</title>
-  <!--Selective Mapping-->
-  <!-- GOOGLE CHARTS VERSION
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>-->
-  <!--<script src="https://d3js.org/d3.v5.min.js"></script>
-    <script src="https://d3js.org/d3.v4.min.js"></script>
-    <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
-    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
-    <script src="//d3js.org/d3-geo-projection.v1.min.js"></script>
-    <script src="//d3js.org/topojson.v2.min.js"></script>-->
+  <!--D3 Graphing and Mapping-->
   <script src="https://d3js.org/d3.v6.min.js"></script>
   <script src="https://unpkg.com/topojson@3"></script>
   <script src="https://unpkg.com/d3-geo-projection"></script>
 
-  <!--Draggable Div with JQuery-->
+  <!--JQuery Plugin-->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <!--Draggable Div (JQuery dependent)-->
   <script>
     $(function () {
       $('#controlmap').draggable()
     })
   </script>
 
+
+  <!--Styling-->
   <link rel="stylesheet" href="css/style.css" />
-
-  <!--Map using OpenLayers-->
-  <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
-  <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/css/ol.css"
-    type="text/css" />
-
   <!--Header Font: Questrial-->
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Questrial&display=swap');
   </style>
+
 </head>
 
 <body>
@@ -223,75 +212,11 @@
     </div>
   </div>
 
-  <!-------------------------------Map Controls End----------------------------------------->
-
-  <!-------------------------------Events Pins Begin----------------------------------------->
-
-  <!--
-    <div class="event-pins">
-      <ul class="events" style="list-style: none;">
-        <li class="event" id="event">
-          <button
-            style="border: none;"
-            id="triangle"
-            class="unpinned unpin-background"
-            onclick="showEventFeed()"
-          >
-            1
-          </button>
-          <div class="pop-up" id="1">
-            <div class="blocker" onclick="hideEventFeed()"></div>
-            <div class="contents" data-for="1">Something</div>
-          </div>
-        </li>
-        <li class="event" id="event">
-          <button
-            style="border: none;"
-            id="triangle"
-            class="pinned pin-background"
-            onclick="showEventFeed()"
-          >
-            2
-          </button>
-          <div class="pop-up" id="2">
-            <div class="blocker" onclick="hideEventFeed()"></div>
-            <div class="contents" data-for="2">Something else</div>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <script>
-      ///I wrote this myself and it's atrocious
-      const one = document.getElementById('1')
-      const two = document.getElementById('2')
-      const popupbox = document.querySelector('.pop-up')
-      const content = document.querySelector('.contents')
-
-      function showEventFeed() {
-        popupbox.classList.add('open')
-      }
-      function hideEventFeed() {
-        popupbox.classList.remove('open')
-      }
-
-    </script>-->
-
-  <!-------------------------------Events Pins End----------------------------------------->
-
-  <!--Draggable Function for Control Box
-    <script type="text/javascript" src="../js/draggable.js"></script>-->
-
-  <!-------------------------------Map Controls End----------------------------------------->
+  
+    <!-------------------------------Map Begin----------------------------------------->
 
   <!--D3 MAP IN BACKGROUND-->
   <div class="feed-background">
-    <!--Globe - Needs to change geojson var
-    <div class="map" id="mapidglobe" style="text-align:center; padding-top: 100px;">
-        <canvas width="950" height="1000"></canvas>
-    </div>-->
-
-    <!-- Flat Map 
-    <div class="map" id="mapidflat" style="background-image: url('images/map.png'); height: 750px;"></div>-->
 
     <svg width="100%" height="800px" class="map" style="text-align: center; margin-top: 100px; overflow: visible;">
       <g class="graticule">
@@ -306,67 +231,19 @@
 
     <script type="text/javascript" src="js/maps.js"></script>
   </div>
-  <div class="background-placeholder"></div>
+   <div class="background-placeholder"></div> <!--provides space for access to map.-->
 
-  <!--OPENLAYERS MAP IN BACKGROUND-->
-  <!--  <div id="map" class="map"></div>
-    <div id="overlay"></div>
-    
-    <script>
-    var map = new ol.Map({
-      target: 'map',
-      layers: [
-        new ol.layer.Tile({
-          source: new ol.source.OSM()
-        })
-      ],
-      view: new ol.View({
-        center: ol.proj.fromLonLat([37.41, 8.82]),
-        zoom: 4
-      })
-    });
-    
-    var vectorSource = new ol.source.Vector({
-      url: 'https://openlayers.org/en/v4.6.5/examples/data/geojson/countries.geojson',
-      format: new ol.format.GeoJSON()
-    });
-    
-    var vectorLayer = new ol.layer.Vector({
-      source: vectorSource,
-      style: new ol.style.Style({
-        stroke: new ol.style.Stroke({
-          color: 'rgba(0, 0, 255, 0.1)',
-          width: 2
-        })
-      })
-    });
-    
-    map.addLayer(vectorLayer);
-    
-    var overlay = new ol.Overlay({
-      element: document.getElementById('overlay')
-    });
-    
-    map.addOverlay(overlay);
-    
-    // display overlay on click
-    map.on('click', function(evt) {
-      var feature = map.forEachFeatureAtPixel(evt.pixel,
-          function(feature) {
-            return feature;
-          });
-      if (feature) {
-        var coordinates = feature.getGeometry().getCoordinates();
-        overlay.setPosition(coordinates);
-        document.getElementById('overlay').innerHTML = feature.get('name');
-      } else {
-        document.getElementById('overlay').innerHTML = "";
-      }
-    });
-    </script>
-    -->
 
   <!-------------------------------Map End----------------------------------------->
+
+  <!-------------------------------Map Controls End----------------------------------------->
+
+  <!-------------------------------Events Pins Begin----------------------------------------->
+
+  <!-------------------------------Events Pins End----------------------------------------->
+
+
+   <!-------------------------------ConsoleLog NewsAPI Begin-----------------------------------------> 
 
   <!--<div class="background-placeholder"></div>-->
   <script>
@@ -391,26 +268,7 @@
     main();
   </script>
 
-
-  <script>
-    async function maintwo() {
-      async function giveMeDataAbout(thing, apiKey) {
-        return await fetch(`https://newsapi.org/v2/top-headlines/sources?apiKey=${apiKey}`)
-          .then(response => response.json())
-          .then(data => {
-            return data.articles
-          });
-      }
-
-      var articles = await giveMeDataAbout('631dc06585164470aacefd1118f11c15');
-      for (var i = 0; i < articles.length; i++) {
-        console.log(articles[i].source.name);
-        console.log(articles[i].source.country);
-        //console.table(articles, ['source.id','publishedAt','country']);
-      }
-    }
-    maintwo();
-  </script>
+     <!-------------------------------ConsoleLog NewsAPI End-----------------------------------------> 
 
   <!-------------------------------Filters Begin----------------------------------------->
 
@@ -439,20 +297,20 @@
         <div style="width:span; margin-top:2px">
 
           <ul id="sources">
-            <li><a id="source" class="source">Reports Pro</a></li>
-            <li><a id="source" class="source">BBC</a></li>
-            <li><a id="source" class="source">NBC</a></li>
-            <li><a id="source" class="source">Newszilla</a></li>
-            <li><a id="source" class="source">Newslux</a></li>
-            <li><a id="source" class="source">CNN</a></li>
-            <li><a id="source" class="source">AuthenticNews</a></li>
-            <li><a id="source" class="source">FrontNews</a></li>
-            <li><a id="source" class="source">Newslia</a></li>
+            <li><a id="source" class="source">Reports Pro</a>-#1</li>
+            <li><a id="source" class="source">BBC</a>-#2</li>
+            <li><a id="source" class="source">NBC</a>-#3</li>
+            <li><a id="source" class="source">Newszilla</a>-#4</li>
+            <li><a id="source" class="source">Newslux</a>-#5</li>
+            <li><a id="source" class="source">CNN</a>-#6</li>
+            <li><a id="source" class="source">AuthenticNews</a>-#7</li>
+            <li><a id="source" class="source">FrontNews</a>-#8</li>
+            <li><a id="source" class="source">Newslia</a>-#9</li>
           </ul>
         </div>
       </div>
-      <!--sources searching amd selection function-->
-      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      
+      <!--sources searching amd selection function (JQuery Dependent)-->
       <script>
         $(document).ready(function () {
           $("#sourceInput").on("keyup", function () {
@@ -475,16 +333,17 @@
           });
         });
       </script>
-      <!--date input function-->
+      <!--JQueryUI Plugin-->
       <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <!--sort of necessary styling sheet-->
       <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+      <!--date input widget (JQueryUI Dependent)-->
       <script>
         $(document).ready(function () {
           $("#dateInputMin").datepicker({
             dateFormat: "mm/dd/yy"
           });
         });
-
         $(document).ready(function () {
           $("#dateInputMax").datepicker({
             dateFormat: "mm/dd/yy"
@@ -492,13 +351,12 @@
         });
       </script>
 
-
-
     </div>
   </div>
 
 
   <!-------------------------------Filters End----------------------------------------->
+
 
   <!-------------------------------Body End----------------------------------------->
 
@@ -523,5 +381,4 @@
     </div>
   </footer>
 </body>
-
 </html>
