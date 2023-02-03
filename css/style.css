@@ -733,7 +733,7 @@ p.footer {
 }
 
 .map path:hover{ /*the damn grid wouldn't stop changing on hover*/
-  transform: translateY(0px);
+  transform: translateY(0px); 
 
 
 /*------------Marquee------------*/
