@@ -77,6 +77,94 @@
 
   <!-------------------------------Body Begin----------------------------------------->
 
+  <!-------------------------------Filters Begin----------------------------------------->
+  <div class="background-placeholder"></div> <!--provides scrolling space for access to map.-->
+  <div class="wrapper">
+    <h1>NEWS FEED FILTER</h1>
+    <div class="margin">
+
+
+      <div class="feed-span, feed">
+
+
+        <!--SCRIPT MAKES SELECTED SOURCES APPEAR WITHIN THIS DIV-->
+        <div id="feed-grid" class="feed-grid"></div>
+
+          <div id="searchInputs">
+          <input type="text" id="sourceInput" onkeyup="searchFunction()" placeholder="Search for news sources..."
+            title="Type in a name" />
+          <input type="text" id="dateInputMin" placeholder="From: MM/DD/YYYY"
+            pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d">
+            <input type="text" id="dateInputMax" placeholder="Until: MM/DD/YYYY"
+            pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d">
+          <!--<div class="feed"></div>-->
+        </div>
+
+
+        <div style="width:span; margin-top:2px">
+
+          <ul id="sources">
+            <li><a id="source" class="source">Reports Pro</a>-#1</li>
+            <li><a id="source" class="source">BBC</a>-#2</li>
+            <li><a id="source" class="source">NBC</a>-#3</li>
+            <li><a id="source" class="source">Newszilla</a>-#4</li>
+            <li><a id="source" class="source">Newslux</a>-#5</li>
+            <li><a id="source" class="source">CNN</a>-#6</li>
+            <li><a id="source" class="source">AuthenticNews</a>-#7</li>
+            <li><a id="source" class="source">FrontNews</a>-#8</li>
+            <li><a id="source" class="source">Newslia</a>-#9</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!--sources searching amd selection function (JQuery Dependent)-->
+      <script>
+        $(document).ready(function () {
+          $("#sourceInput").on("keyup", function () {
+            var value = $(this).val().toUpperCase();
+            $("#sources li").filter(function () {
+              $(this).toggle($(this).text().toUpperCase().indexOf(value) > -1)
+            });
+          });
+          $("#sources").on("click", "li", function () {
+            var source = $(this).find("a").text();
+            if (!$("#feed-grid").find("." + source).length) {
+              $("#feed-grid").append("<div class='feed " + source + "'>" + source + "</div>");
+              $(this).hide();
+            }
+          });
+          $("#feed-grid").on("click", ".feed", function () {
+            var source = $(this).text();
+            $("#sources").find("a:contains(" + source + ")").parent().show();
+            $(this).remove();
+          });
+        });
+      </script>
+      <!--JQueryUI Plugin-->
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <!--sort of necessary styling sheet-->
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+      <!--date input widget (JQueryUI Dependent)-->
+      <script>
+        $(document).ready(function () {
+          $("#dateInputMin").datepicker({
+            dateFormat: "mm/dd/yy"
+          });
+        });
+        $(document).ready(function () {
+          $("#dateInputMax").datepicker({
+            dateFormat: "mm/dd/yy"
+          });
+        });
+      </script>
+
+    </div>
+  </div>
+
+
+  <!-------------------------------Filters End----------------------------------------->
+
+
   <!-------------------------------Map Begin----------------------------------------->
 
   <!-------------------------------Map Controls Begin----------------------------------------->
@@ -108,7 +196,6 @@
         <div class="projection-type item">
           <div><select class="default" name="type" value="150"></select></div>
         </div>
-
         <div class="slider item">
           <div class="label">
             scale (
@@ -213,9 +300,9 @@
       </div>
     </div>
   </div>
-
+  <!-------------------------------Map Controls End----------------------------------------->
   
-    <!-------------------------------Map Begin----------------------------------------->
+    <!-------------------------------Actual Map Begin----------------------------------------->
 
   <!--D3 MAP IN BACKGROUND-->
   <div class="feed-background">
@@ -233,12 +320,12 @@
 
     <script type="text/javascript" src="js/maps.js"></script>
   </div>
-   <div class="background-placeholder"></div> <!--provides space for access to map.-->
+
 
 
   <!-------------------------------Map End----------------------------------------->
 
-  <!-------------------------------Map Controls End----------------------------------------->
+
 
   <!-------------------------------Events Pins Begin----------------------------------------->
 
@@ -272,93 +359,7 @@
 
      <!-------------------------------ConsoleLog NewsAPI End-----------------------------------------> 
 
-  <!-------------------------------Filters Begin----------------------------------------->
-
-  <div class="wrapper">
-    <h1>NEWS FEED FILTER</h1>
-    <div class="margin">
-
-
-      <div class="feed-span, feed">
-
-
-        <!--SCRIPT MAKES SELECTED SOURCES APPEAR WITHIN THIS DIV-->
-        <div id="feed-grid" class="feed-grid"></div>
-
-          <div id="searchInputs">
-          <input type="text" id="sourceInput" onkeyup="searchFunction()" placeholder="Search for news sources..."
-            title="Type in a name" />
-          <input type="text" id="dateInputMin" placeholder="From: MM/DD/YYYY"
-            pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d">
-            <input type="text" id="dateInputMax" placeholder="Until: MM/DD/YYYY"
-            pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d">
-          <!--<div class="feed"></div>-->
-        </div>
-
-
-        <div style="width:span; margin-top:2px">
-
-          <ul id="sources">
-            <li><a id="source" class="source">Reports Pro</a>-#1</li>
-            <li><a id="source" class="source">BBC</a>-#2</li>
-            <li><a id="source" class="source">NBC</a>-#3</li>
-            <li><a id="source" class="source">Newszilla</a>-#4</li>
-            <li><a id="source" class="source">Newslux</a>-#5</li>
-            <li><a id="source" class="source">CNN</a>-#6</li>
-            <li><a id="source" class="source">AuthenticNews</a>-#7</li>
-            <li><a id="source" class="source">FrontNews</a>-#8</li>
-            <li><a id="source" class="source">Newslia</a>-#9</li>
-          </ul>
-        </div>
-      </div>
-      
-      <!--sources searching amd selection function (JQuery Dependent)-->
-      <script>
-        $(document).ready(function () {
-          $("#sourceInput").on("keyup", function () {
-            var value = $(this).val().toUpperCase();
-            $("#sources li").filter(function () {
-              $(this).toggle($(this).text().toUpperCase().indexOf(value) > -1)
-            });
-          });
-          $("#sources").on("click", "li", function () {
-            var source = $(this).find("a").text();
-            if (!$("#feed-grid").find("." + source).length) {
-              $("#feed-grid").append("<div class='feed " + source + "'>" + source + "</div>");
-              $(this).hide();
-            }
-          });
-          $("#feed-grid").on("click", ".feed", function () {
-            var source = $(this).text();
-            $("#sources").find("a:contains(" + source + ")").parent().show();
-            $(this).remove();
-          });
-        });
-      </script>
-      <!--JQueryUI Plugin-->
-      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-      <!--sort of necessary styling sheet-->
-      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-      <!--date input widget (JQueryUI Dependent)-->
-      <script>
-        $(document).ready(function () {
-          $("#dateInputMin").datepicker({
-            dateFormat: "mm/dd/yy"
-          });
-        });
-        $(document).ready(function () {
-          $("#dateInputMax").datepicker({
-            dateFormat: "mm/dd/yy"
-          });
-        });
-      </script>
-
-    </div>
-  </div>
-
-
-  <!-------------------------------Filters End----------------------------------------->
-
+  <!--//////////////////////////////////-->
 
   <!-------------------------------Body End----------------------------------------->
 
