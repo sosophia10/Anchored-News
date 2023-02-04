@@ -24,6 +24,7 @@
 
 
 
+
   <!--Styling-->
   <link rel="stylesheet" href="css/style.css" />
   <!--Header Font: Questrial-->
@@ -215,6 +216,10 @@
 
   <!-------------------------------Filters Begin----------------------------------------->
   <div class="background-placeholder"></div> <!--provides scrolling space for access to map.-->
+
+
+    <div id="tab"> </div>  
+  <div id="panel"> 
   <div class="wrapper">
     <h1>NEWS FEED FILTER</h1> 
     <div class="margin">
@@ -296,6 +301,37 @@
 
     </div>
   </div>
+</div>
+
+<script>
+  //hover over tab and pull up panel function
+  var tab = document.getElementById("tab");
+var panel = document.getElementById("panel");
+var searchInputs = document.getElementById("searchInputs");
+
+// Add a mouseenter event listener to the tab
+tab.addEventListener("mouseenter", function() {
+  // When the mouse enters the tab, add the open class to the panel
+  panel.classList.add("open");
+});
+
+// Add a mouseleave event listener to the panel
+panel.addEventListener("mouseleave", function() {
+  // Check if the searchInputs area is currently focused
+  var isFocused = document.activeElement.closest("#searchInputs") === searchInputs;
+
+  // If the searchInputs area is not focused, remove the open class from the panel
+  if (!isFocused) {
+    panel.classList.remove("open");
+  }
+});
+
+// Add a focusout event listener to the searchInputs area
+searchInputs.addEventListener("focusout", function() {
+  // When the focus leaves the searchInputs area, remove the open class from the panel
+  panel.classList.remove("open");
+});
+</script>
 
 
   <!-------------------------------Filters End----------------------------------------->
@@ -364,23 +400,5 @@
 
   <!-------------------------------Footer Begin----------------------------------------->
 
-  <footer>
-    <div>
-      <div>
-        <p class="footer-body">
-          <br />
-          <br />
-          Footer Stuff
-        </p>
-      </div>
-      <div>
-        <p class="footer">
-          <br />
-          <br />
-          Webpage by Sophia Herman &nbsp; &nbsp;
-        </p>
-      </div>
-    </div>
-  </footer>
 </body>
 </html>

@@ -14,6 +14,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  overflow: hidden;
 
 }
 
@@ -403,10 +404,10 @@ ul.nav>li a:active {
   background-position: 10px 10px;
   background-repeat: no-repeat;
   background-color: rgba(103, 148, 220, 0.5);
-  width: span;
+  width: 280px;
   min-width:40px;
   font-size: 16px;
-  padding: 15px 40px 15px 40px;
+  padding: 15px 3vw 15px 3vw;
   border: 1px solid rgba(103, 148, 220, 0.5);
   color: #E3E3E3;
   margin-bottom: 12px;
@@ -421,10 +422,10 @@ ul.nav>li a:active {
   background-position: 10px 10px;
   background-repeat: no-repeat;
   background-color: rgba(103, 148, 220, 0.5);
-  width: span;
+  width: 280px;
   min-width:40px;
   font-size: 16px;
-  padding: 15px 40px 15px 40px;
+  padding: 15px 1vw 15px 3vw;
   border: 1px solid rgba(103, 148, 220, 0.5);
   color: #E3E3E3;
   margin-bottom: 12px;
@@ -445,7 +446,7 @@ ul.nav>li a:active {
   width: 100%;
   min-width: 80px;
   font-size: 16px;
-  padding: 15px 40px 15px 40px;
+  padding: 15px 0.2vw 15px 40px;
   border: 1px solid rgba(103, 148, 220, 0.5);
   color: #E3E3E3;
   margin-bottom: 12px;
@@ -526,10 +527,42 @@ button {
 }
 
 
+#tab {
+  z-index:3;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background-color: rgba(103, 148, 220, 0.5);;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+#panel {
+  z-index:4;
+  padding: 20px 35px;
+  position: fixed;
+  bottom: -440px;
+  left: 0;
+  right: 0;
+  height: 400px;
+  background-color: rgba(103, 148, 220, 0.5);
+  color: white;
+  transition: bottom 0.5s;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+#panel.open {
+  bottom: 0;
+}
+
+
+
 .wrapper {
   width: 100%;
   height: 100%;
-  margin-bottom: 0px;
   z-index: 300;
   position:relative;
 
@@ -560,8 +593,9 @@ button {
 }
 
 .margin {
-  padding: 30px;
-  background: rgba(103, 148, 220, 0.5);
+  padding: 0px;
+  height:100;
+  background: rgba(103, 148, 220, 0);
 }
 
 .bubblemargin {
