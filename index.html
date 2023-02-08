@@ -222,7 +222,6 @@
   <div id="panel"> 
   <div class="wrapper">
     <h1>NEWS FEED FILTER</h1> 
-    <div class="margin">
 
 
       <div class="feed-span, feed">
@@ -299,7 +298,6 @@
         });
       </script>
 
-    </div>
   </div>
 </div>
 
@@ -386,6 +384,51 @@ searchInputs.addEventListener("focusout", function() {
         console.log(articles[i].source.name);
         console.log(articles[i].publishedAt);
         console.log(articles[i].source.country);
+        //console.table(articles, ['source.id','publishedAt','country']);
+      }
+    }
+    main();
+  </script>-->
+
+    <!--<script>
+    async function main() {
+      async function giveMeDataAbout(country, date, apiKey) {
+        return await fetch(`https://newsapi.org/v2/top-headlines?country=${country}&from=${date}&to=${date}&apiKey=${apiKey}`)
+          .then(response => response.json())
+          .then(data => {
+            return data.articles
+          });
+      }
+      var month = 02;
+      var day = 07;
+      var articles = await giveMeDataAbout('lv', '2023-' + month + '-' + day, '631dc06585164470aacefd1118f11c15');
+      for (var i = 0; i < articles.length; i++) {
+        console.log(articles[i].title);
+        console.log(articles[i].source.name);
+        console.log(articles[i].publishedAt);
+        console.log(articles[i].url);
+      }
+    }
+    main();
+  </script>-->
+
+    <!--<script>
+    async function main() {
+      async function giveMeDataAbout(country, apiKey) {
+        return await fetch(`https://newsapi.org/v2/sources?country=${country}&apiKey=${apiKey}`)
+          .then(response => response.json())
+          .then(data => {
+            return data.sources
+          });
+      }
+
+      var sources = await giveMeDataAbout('za', '631dc06585164470aacefd1118f11c15');
+      for (var i = 0; i < sources.length; i++) {
+        console.log(sources[i].name);
+        console.log(sources[i].category);
+        console.log(sources[i].description);
+        console.log(sources[i].url);
+        console.log(sources[i].language);
         //console.table(articles, ['source.id','publishedAt','country']);
       }
     }
