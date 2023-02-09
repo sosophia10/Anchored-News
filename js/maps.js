@@ -130,8 +130,28 @@ u.enter()
 .attr('d', geoGenerator);
 }
 
+//drag to translate
+var drag = d3.drag()
+   .on("drag", function() {
+      state.translateX += d3.event.dx;
+      state.translateY += d3.event.dy;
+      update();
+   });
+
+d3.select(".feed-background")
+   .call(drag);
 
 
+   //zoom to scale
+   var zoom = d3.zoom()
+   .scaleExtent([90, 900])
+   .on("zoom", function() {
+      state.scale = d3.event.transform.k * 2;
+      update();
+   });
+
+d3.select(".feed-background")
+   .call(zoom);
 
 //source:
 //https://gist.github.com/d3indepth/f28e1c3a99ea6d84986f35ac8646fac7#file-ne_110m_land-json

@@ -80,6 +80,9 @@
 
   <!--<script src="https://d3js.org/d3.v4.min.js"></script>-->
   <script type="text/javascript" src="js/mapcontrol.js"></script>
+
+  <div id="controltab"> </div>  
+  <div id="controlpanel"> 
   <!--Map Control Box-->
   <div id="control">
     <div id="selected-country"></div> <!--DISPLAY NAME OF COUNTRY BEING HOVERED-->
@@ -209,6 +212,35 @@
       </div>
     </div>
   </div>
+  </div>
+
+  <script>
+    //hover over tab and pull up panel function
+    var controltab = document.getElementById("controltab");
+    var controlpanel = document.getElementById("controlpanel");
+    var controlInputs = document.getElementById("control");
+    var controlpanelOpen = false;
+  
+    controltab.addEventListener("mouseenter", function () {
+      controlpanel.classList.add("open");
+      controlpanelOpen = true;
+    });
+  
+    controlpanel.addEventListener("mouseleave", function (event) {
+  let mouseY = event.clientY;
+  
+  // Check if the search inputs are currently focused
+  if (controlInputs.contains(document.activeElement)) {
+    // If the search inputs are focused, keep the panel open
+  } else if (mouseY < controlpanel.offsetTop) {
+    // If the mouse is above the top of the panel, close the panel
+    controlpanel.classList.remove("open");
+  } else {
+    // If the mouse is anywhere else within the panel, keep the panel open
+  }
+  });
+  
+  </script>
   <!-------------------------------Map Controls End----------------------------------------->
   
 
@@ -304,31 +336,29 @@
 <script>
   //hover over tab and pull up panel function
   var tab = document.getElementById("tab");
-var panel = document.getElementById("panel");
-var searchInputs = document.getElementById("searchInputs");
+  var panel = document.getElementById("panel");
+  var searchInputs = document.getElementById("searchInputs");
+  var panelOpen = false;
 
-// Add a mouseenter event listener to the tab
-tab.addEventListener("mouseenter", function() {
-  // When the mouse enters the tab, add the open class to the panel
-  panel.classList.add("open");
-});
+  tab.addEventListener("mouseenter", function () {
+    panel.classList.add("open");
+    panelOpen = true;
+  });
 
-// Add a mouseleave event listener to the panel
-panel.addEventListener("mouseleave", function() {
-  // Check if the searchInputs area is currently focused
-  var isFocused = document.activeElement.closest("#searchInputs") === searchInputs;
+  panel.addEventListener("mouseleave", function (event) {
+let mouseY = event.clientY;
 
-  // If the searchInputs area is not focused, remove the open class from the panel
-  if (!isFocused) {
-    panel.classList.remove("open");
-  }
-});
-
-// Add a focusout event listener to the searchInputs area
-searchInputs.addEventListener("focusout", function() {
-  // When the focus leaves the searchInputs area, remove the open class from the panel
+// Check if the search inputs are currently focused
+if (searchInputs.contains(document.activeElement)) {
+  // If the search inputs are focused, keep the panel open
+} else if (mouseY < panel.offsetTop) {
+  // If the mouse is above the top of the panel, close the panel
   panel.classList.remove("open");
+} else {
+  // If the mouse is anywhere else within the panel, keep the panel open
+}
 });
+
 </script>
 
 
@@ -400,8 +430,28 @@ searchInputs.addEventListener("focusout", function() {
           });
       }
       var month = 02;
-      var day = 07;
-      var articles = await giveMeDataAbout('lv', '2023-' + month + '-' + day, '631dc06585164470aacefd1118f11c15');
+      var day = 08;
+      var articles = await giveMeDataAbout('za', '2023-' + month + '-' + day, '631dc06585164470aacefd1118f11c15');
+      for (var i = 0; i < articles.length; i++) {
+        console.log(articles[i].title);
+        console.log(articles[i].source.name);
+        console.log(articles[i].publishedAt);
+        console.log(articles[i].url);
+      }
+    }
+    main();
+  </script>-->
+
+      <!--<script>
+    async function main() {
+      async function giveMeDataAbout(country, apiKey) {
+        return await fetch(`https://newsapi.org/v2/top-headlines?country=${country}&from=2023-02-06&to=2023-02-07&apiKey=${apiKey}`)
+          .then(response => response.json())
+          .then(data => {
+            return data.articles
+          });
+      }
+      var articles = await giveMeDataAbout('za', '631dc06585164470aacefd1118f11c15');
       for (var i = 0; i < articles.length; i++) {
         console.log(articles[i].title);
         console.log(articles[i].source.name);
