@@ -290,7 +290,7 @@ ul.nav>li a:active {
 #controlmap {
   position: absolute;
   z-index: 10;
-  cursor: move;
+
 }
 
 .controlslide {
@@ -330,6 +330,7 @@ ul.nav>li a:active {
 
 .control {
   width: 200px;
+  margin: 30px;
   padding: 10px;
   background-color: #1E3C5A;
   color: #E3E3E3;
@@ -541,15 +542,15 @@ button {
 #controlpanel{
 
   z-index:4;
-  padding: 0px 35px;
+  padding: 0px 30px;
   position: fixed;
-  left: -280px;
+  left: -3105px;
   height: 80%;
   bottom: 0;
   width: 260px;
   background-color: rgba(103, 148, 220, 0.5);
   color: white;
-  transition: left 0.5s;
+  transition: left 1s;
   overflow: hidden;
   overflow-y: scroll;
 }

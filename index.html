@@ -14,12 +14,12 @@
   <!--JQuery Plugin-->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-  <!--Draggable Div (JQuery dependent)-->
+  <!--Draggable Div (JQuery dependent)
   <script>
     $(function () {
       $('#controlmap').draggable()
     })
-  </script>
+  </script>-->
 
 
 
@@ -86,7 +86,7 @@
   <!--Map Control Box-->
   <div id="control">
     <div id="selected-country"></div> <!--DISPLAY NAME OF COUNTRY BEING HOVERED-->
-    <div id="controlmap" class="margin">
+    <div id="controlmap" class="">
       <div id="controlbox" class="feed-span control">
         <!--Map Toggle-->
         <!--<button class=default href="javascript:;" onmousedown="toggleDiv('mapid');">Toggle Globe |
@@ -228,11 +228,12 @@
   
     controlpanel.addEventListener("mouseleave", function (event) {
   let mouseY = event.clientY;
+  let mouseX = event.clientX;
   
   // Check if the search inputs are currently focused
   if (controlInputs.contains(document.activeElement)) {
     // If the search inputs are focused, keep the panel open
-  } else if (mouseY < controlpanel.offsetTop) {
+  } else if (mouseX > (controlpanel.offsetLeft + controlpanel.offsetWidth) || mouseY < controlpanel.offsetTop) {
     // If the mouse is above the top of the panel, close the panel
     controlpanel.classList.remove("open");
   } else {
