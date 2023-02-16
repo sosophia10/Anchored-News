@@ -68,7 +68,7 @@ ul.nav {
   padding: 0;
   overflow: hidden;
   /*header color*/
-  background-color: #030609;
+  background-color: #03060900;
   position: fixed;
   top: 0;
   width: 100%;
@@ -913,7 +913,7 @@ ul.list li {
 
 .about-tabs {
   position: absolute;
-  z-index: 9;
+  z-index: 2;
   top: calc(10% + 20px);
 
 }
