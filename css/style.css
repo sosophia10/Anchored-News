@@ -17,6 +17,10 @@ body {
   overflow:hidden;
 }
 
+#overflow-auto {
+  overflow: auto;
+}
+
 html {
   min-height: 100%;
   position: relative;
