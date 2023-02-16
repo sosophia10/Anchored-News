@@ -74,6 +74,7 @@ fetch(`data/${code}-headlines.json`)
 
         const link = document.createElement("a");
         link.href = article.url;
+        link.target = "_blank";
         link.classList.add("source");
         link.setAttribute("id", "source");
         card.appendChild(link);
