@@ -75,14 +75,6 @@ var slider = {
   
 };
 
-$("#marker").draggable({ 
-  containment: "#markerbounds",
-  drag: function() {
-    slider.get_position();
-    slider.display_position();
-  },
-});
-
 //syntax for rendering is:
 //  slider.render(width, height, width-range, height-range, marker size, output decimal places)
 
@@ -90,27 +82,4 @@ let height = window.innerHeight;
 let width = window.innerWidth;
 
 slider.draw(150,150,1,1,20,2);
-
-// check to make sure the defaults work:
-//slider.draw();
-
-
-//unused
-
-//toggle between divs 
-/*function toggleDiv(mapid)
-{
-  varon = mapid + 'flat'; //class="mapidflat"
-  varoff = mapid + 'globe'; //class="mapidglobe"
-  if(document.getElementById(varon).style.display == 'block')
-  {
-  document.getElementById(varon).style.display = 'none';
-  document.getElementById(varoff).style.display = 'block';
-  }
-  else
-  {  
-  document.getElementById(varoff).style.display = 'none';
-  document.getElementById(varon).style.display = 'block'
-  }
-}*/
 

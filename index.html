@@ -81,137 +81,137 @@
   <!--<script src="https://d3js.org/d3.v4.min.js"></script>-->
   <script type="text/javascript" src="js/mapcontrol.js"></script>
 
-  <div id="controltab"> </div>  
-  <div id="controlpanel"> 
-  <!--Map Control Box-->
-  <div id="control">
-    <div id="selected-country"></div> <!--DISPLAY NAME OF COUNTRY BEING HOVERED-->
-    <div id="controlmap" class="">
-      <div id="controlbox" class="feed-span control">
-        <!--Map Toggle-->
-        <!--<button class=default href="javascript:;" onmousedown="toggleDiv('mapid');">Toggle Globe |
+  <div id="controltab"><img src="../images/compass-w.png" class="tabicon"></img></div>
+  <div id="controlpanel">
+    <!--Map Control Box-->
+    <div id="control">
+      <div id="selected-country"></div> <!--DISPLAY NAME OF COUNTRY BEING HOVERED-->
+      <div id="controlmap" class="">
+        <div id="controlbox" class="feed-span control">
+          <!--Map Toggle-->
+          <!--<button class=default href="javascript:;" onmousedown="toggleDiv('mapid');">Toggle Globe |
                     Equirectangular</button>-->
 
-        <!--Mini map-->
-        <div id="widget">
-          <div id="markerbounds">
-            <div id="box">
-              <div id="marker"></div>
+          <!--Mini map-->
+          <div id="widget">
+            <div id="markerbounds">
+              <div id="box">
+                <div id="marker"></div>
+              </div>
+            </div>
+            <div>
+              <p id="coord"></p>
             </div>
           </div>
-          <div>
-            <p id="coord"></p>
-          </div>
-        </div>
 
-        <!--Scale/Zoom-->
-        <div class="projection-type item">
-          <div><select class="default" name="type" value="150"></select></div>
-        </div>
-        <div class="slider item">
-          <div class="label">
-            scale (
-            <span class="value">250</span>
-            )
+          <!--Scale/Zoom-->
+          <div class="projection-type item">
+            <div><select class="default" name="type" value="150"></select></div>
           </div>
-          <div>
-            <span class="low">90</span>
-            <input class="controlslide" type="range" name="scale" min="90" max="900" value=250">
-            <span>900</span>
+          <div class="slider item">
+            <div class="label">
+              scale (
+              <span class="value">250</span>
+              )
+            </div>
+            <div>
+              <span class="low">90</span>
+              <input class="controlslide" type="range" name="scale" min="90" max="900" value=250">
+              <span>900</span>
+            </div>
           </div>
-        </div>
-        <div class="slider item">
-          <div class="label">
-            center (lon) (
-            <span class="value">0</span>
-            )
+          <div class="slider item">
+            <div class="label">
+              center (lon) (
+              <span class="value">0</span>
+              )
+            </div>
+            <div>
+              <span class="low">-180</span>
+              <input class="controlslide" type="range" name="centerLon" min="-180" max="180" value="0" />
+              <span>180</span>
+            </div>
           </div>
-          <div>
-            <span class="low">-180</span>
-            <input class="controlslide" type="range" name="centerLon" min="-180" max="180" value="0" />
-            <span>180</span>
+          <div class="slider item">
+            <div class="label">
+              center (lat) (
+              <span class="value">0</span>
+              )
+            </div>
+            <div>
+              <span class="low">-90</span>
+              <input class="controlslide" type="range" name="centerLat" min="-90" max="90" value="0" />
+              <span>90</span>
+            </div>
           </div>
-        </div>
-        <div class="slider item">
-          <div class="label">
-            center (lat) (
-            <span class="value">0</span>
-            )
+          <div class="slider item">
+            <div class="label">
+              translate (x) (
+              <span class="value">480</span>
+              )
+            </div>
+            <div>
+              <span class="low">0</span>
+              <input class="controlslide" type="range" name="translateX" min="0" max="960" value="480" />
+              <span>960</span>
+            </div>
           </div>
-          <div>
-            <span class="low">-90</span>
-            <input class="controlslide" type="range" name="centerLat" min="-90" max="90" value="0" />
-            <span>90</span>
+          <div class="slider item">
+            <div class="label">
+              translate (y) (
+              <span class="value">250</span>
+              )
+            </div>
+            <div>
+              <span class="low">0</span>
+              <input class="controlslide" type="range" name="translateY" min="0" max="500" value="250" />
+              <span>500</span>
+            </div>
           </div>
-        </div>
-        <div class="slider item">
-          <div class="label">
-            translate (x) (
-            <span class="value">480</span>
-            )
+          <!--Rotation-->
+          <div class="slider item">
+            <div class="label">
+              rotate (&lambda;) (
+              <span class="value">0</span>
+              )
+            </div>
+            <div>
+              <span class="low">0</span>
+              <input class="controlslide" type="range" name="rotateLambda" min="0" max="360" value="0" />
+              <span>360</span>
+            </div>
           </div>
-          <div>
-            <span class="low">0</span>
-            <input class="controlslide" type="range" name="translateX" min="0" max="960" value="480" />
-            <span>960</span>
+          <div class="slider item">
+            <div class="label">
+              rotate (&phi;) (
+              <span class="value">0</span>
+              )
+            </div>
+            <div>
+              <span class="low">0</span>
+              <input class="controlslide" type="range" name="rotatePhi" min="0" max="360" value="0" />
+              <span>360</span>
+            </div>
           </div>
-        </div>
-        <div class="slider item">
-          <div class="label">
-            translate (y) (
-            <span class="value">250</span>
-            )
+          <div class="slider item">
+            <div class="label">
+              rotate (&gamma;) (
+              <span class="value">0</span>
+              )
+            </div>
+            <div>
+              <span class="low">0</span>
+              <input class="controlslide" type="range" name="rotateGamma" min="0" max="360" value="0" />
+              <span>360</span>
+            </div>
           </div>
-          <div>
-            <span class="low">0</span>
-            <input class="controlslide" type="range" name="translateY" min="0" max="500" value="250" />
-            <span>500</span>
-          </div>
-        </div>
-        <!--Rotation-->
-        <div class="slider item">
-          <div class="label">
-            rotate (&lambda;) (
-            <span class="value">0</span>
-            )
-          </div>
-          <div>
-            <span class="low">0</span>
-            <input class="controlslide" type="range" name="rotateLambda" min="0" max="360" value="0" />
-            <span>360</span>
-          </div>
-        </div>
-        <div class="slider item">
-          <div class="label">
-            rotate (&phi;) (
-            <span class="value">0</span>
-            )
-          </div>
-          <div>
-            <span class="low">0</span>
-            <input class="controlslide" type="range" name="rotatePhi" min="0" max="360" value="0" />
-            <span>360</span>
-          </div>
-        </div>
-        <div class="slider item">
-          <div class="label">
-            rotate (&gamma;) (
-            <span class="value">0</span>
-            )
-          </div>
-          <div>
-            <span class="low">0</span>
-            <input class="controlslide" type="range" name="rotateGamma" min="0" max="360" value="0" />
-            <span>360</span>
-          </div>
-        </div>
 
-        <!--Country Exclusion-->
-        <!--All Except This-->
-        <!--This Except All-->
+          <!--Country Exclusion-->
+          <!--All Except This-->
+          <!--This Except All-->
+        </div>
       </div>
     </div>
-  </div>
   </div>
 
   <script>
@@ -220,30 +220,29 @@
     var controlpanel = document.getElementById("controlpanel");
     var controlInputs = document.getElementById("control");
     var controlpanelOpen = false;
-  
+
     controltab.addEventListener("mouseenter", function () {
       controlpanel.classList.add("open");
       controlpanelOpen = true;
     });
-  
+
     controlpanel.addEventListener("mouseleave", function (event) {
-  let mouseY = event.clientY;
-  let mouseX = event.clientX;
-  
-  // Check if the search inputs are currently focused
-  if (controlInputs.contains(document.activeElement)) {
-    // If the search inputs are focused, keep the panel open
-  } else if (mouseX > (controlpanel.offsetLeft + controlpanel.offsetWidth) || mouseY < controlpanel.offsetTop) {
-    // If the mouse is above the top of the panel, close the panel
-    controlpanel.classList.remove("open");
-  } else {
-    // If the mouse is anywhere else within the panel, keep the panel open
-  }
-  });
-  
+      let mouseY = event.clientY;
+      let mouseX = event.clientX;
+      let rect = controlpanel.getBoundingClientRect();
+
+      // Check if the search inputs are currently focused
+      if (mouseX >= (rect.left + rect.width) || mouseY <= rect.top) {
+        // If the mouse is above the top of the panel, close the panel
+        controlpanel.classList.remove("open");
+      } else {
+        // If the mouse is anywhere else within the panel, keep the panel open
+      }
+    });
+
   </script>
   <!-------------------------------Map Controls End----------------------------------------->
-  
+
 
   <!-------------------------------Body Begin----------------------------------------->
 
@@ -251,116 +250,113 @@
   <div class="background-placeholder"></div> <!--provides scrolling space for access to map.-->
 
 
-    <div id="tab"> </div>  
-  <div id="panel"> 
-  <div class="wrapper">
-    <h1>NEWS FEED FILTER</h1> 
+  <div id="tab"><img src="../images/filter-w.png" class="tabicon"></img></img></div>
+  <div id="panel">
+    <div class="wrapper">
+      <h1>NEWS FEED FILTER</h1>
 
 
       <div class="feed-span, feed">
 
 
-        <!--SCRIPT MAKES SELECTED SOURCES APPEAR WITHIN THIS DIV-->
-        <div id="feed-grid" class="feed-grid"></div>
-
-          <div id="searchInputs">
-          <input type="text" id="sourceInput" onkeyup="searchFunction()" placeholder="Search for news sources..."
-            title="Type in a name" />
-          <input type="text" id="dateInputMin" placeholder="From: MM/DD/YYYY"
-            pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d">
-            <input type="text" id="dateInputMax" placeholder="Until: MM/DD/YYYY"
-            pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d">
-          <!--<div class="feed"></div>-->
-        </div>
+        <div id="filters">
+          <!--SCRIPT MAKES SELECTED SOURCES APPEAR WITHIN THIS DIV-->
+          <div id="feed-grid" class="feed-grid"></div>
 
 
-        <div style="width:span; margin-top:2px">
+            <div id="searchInputs">
+              <input type="text" id="sourceInput" onkeyup="searchFunction()" placeholder="Search for news sources..."
+                title="Type in a name" />
+              <input type="text" id="dateInputMin" placeholder="From: MM/DD/YYYY"
+                pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d">
+              <input type="text" id="dateInputMax" placeholder="Until: MM/DD/YYYY"
+                pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d">
+              <!--<div class="feed"></div>-->
+            </div>
 
-          <ul id="sources">
-            <li><a id="source" class="source">Reports Pro</a>-#1</li>
-            <li><a id="source" class="source">BBC</a>-#2</li>
-            <li><a id="source" class="source">NBC</a>-#3</li>
-            <li><a id="source" class="source">Newszilla</a>-#4</li>
-            <li><a id="source" class="source">Newslux</a>-#5</li>
-            <li><a id="source" class="source">CNN</a>-#6</li>
-            <li><a id="source" class="source">AuthenticNews</a>-#7</li>
-            <li><a id="source" class="source">FrontNews</a>-#8</li>
-            <li><a id="source" class="source">Newslia</a>-#9</li>
-          </ul>
-        </div>
-      </div>
-      
-      <!--sources searching amd selection function (JQuery Dependent)-->
-      <script>
-        $(document).ready(function () {
-          $("#sourceInput").on("keyup", function () {
-            var value = $(this).val().toUpperCase();
-            $("#sources li").filter(function () {
-              $(this).toggle($(this).text().toUpperCase().indexOf(value) > -1)
+
+            <div class="card">
+
+              <ul id="sources"></ul>
+
+    <script src="js/news-feed.js"></script>
+            </div>
+          </div>
+
+          <!--sources searching amd selection function (JQuery Dependent)-->
+          <script>
+            $(document).ready(function () {
+              $("#sourceInput").on("keyup", function () {
+                var value = $(this).val().toUpperCase();
+                $("#sources li").filter(function () {
+                  $(this).toggle($(this).text().toUpperCase().indexOf(value) > -1)
+                });
+              });
+              $("#sources").on("click", "li", function () {
+                var source = $(this).find("a").text();
+                if (!$("#feed-grid").find("." + source).length) {
+                  $("#feed-grid").append("<div class='feed " + source + "'>" + source + "</div>");
+                  $(this).hide();
+                }
+              });
+              $("#feed-grid").on("click", ".feed", function () {
+                var source = $(this).text();
+                $("#sources").find("a:contains(" + source + ")").parent().show();
+                $(this).remove();
+              });
             });
-          });
-          $("#sources").on("click", "li", function () {
-            var source = $(this).find("a").text();
-            if (!$("#feed-grid").find("." + source).length) {
-              $("#feed-grid").append("<div class='feed " + source + "'>" + source + "</div>");
-              $(this).hide();
-            }
-          });
-          $("#feed-grid").on("click", ".feed", function () {
-            var source = $(this).text();
-            $("#sources").find("a:contains(" + source + ")").parent().show();
-            $(this).remove();
-          });
-        });
-      </script>
-      <!--JQueryUI Plugin-->
-      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-      <!--sort of necessary styling sheet-->
-      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-      <!--date input widget (JQueryUI Dependent)-->
-      <script>
-        $(document).ready(function () {
-          $("#dateInputMin").datepicker({
-            dateFormat: "mm/dd/yy"
-          });
-        });
-        $(document).ready(function () {
-          $("#dateInputMax").datepicker({
-            dateFormat: "mm/dd/yy"
-          });
-        });
-      </script>
+          </script>
+          <!--JQueryUI Plugin-->
+          <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+          <!--sort of necessary styling sheet-->
+          <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+          <!--date input widget (JQueryUI Dependent)-->
+          <script>
+            $(document).ready(function () {
+              $("#dateInputMin").datepicker({
+                dateFormat: "mm/dd/yy"
+              });
+            });
+            $(document).ready(function () {
+              $("#dateInputMax").datepicker({
+                dateFormat: "mm/dd/yy"
+              });
+            });
+          </script>
 
+
+        </div>
+        <div id="results"></div>
+    </div>
   </div>
-</div>
 
-<script>
-  //hover over tab and pull up panel function
-  var tab = document.getElementById("tab");
-  var panel = document.getElementById("panel");
-  var searchInputs = document.getElementById("searchInputs");
-  var panelOpen = false;
+  <script>
+    //hover over tab and pull up panel function
+    var tab = document.getElementById("tab");
+    var panel = document.getElementById("panel");
+    var searchInputs = document.getElementById("searchInputs");
+    var panelOpen = false;
 
-  tab.addEventListener("mouseenter", function () {
-    panel.classList.add("open");
-    panelOpen = true;
-  });
+    tab.addEventListener("mouseenter", function () {
+      panel.classList.add("open");
+      panelOpen = true;
+    });
 
-  panel.addEventListener("mouseleave", function (event) {
-let mouseY = event.clientY;
+    panel.addEventListener("mouseleave", function (event) {
+      let mouseY = event.clientY;
 
-// Check if the search inputs are currently focused
-if (searchInputs.contains(document.activeElement)) {
-  // If the search inputs are focused, keep the panel open
-} else if (mouseY < panel.offsetTop) {
-  // If the mouse is above the top of the panel, close the panel
-  panel.classList.remove("open");
-} else {
-  // If the mouse is anywhere else within the panel, keep the panel open
-}
-});
+      // Check if the search inputs are currently focused
+      if (searchInputs.contains(document.activeElement)) {
+        // If the search inputs are focused, keep the panel open
+      } else if (mouseY < panel.offsetTop) {
+        // If the mouse is above the top of the panel, close the panel
+        panel.classList.remove("open");
+      } else {
+        // If the mouse is anywhere else within the panel, keep the panel open
+      }
+    });
 
-</script>
+  </script>
 
 
   <!-------------------------------Filters End----------------------------------------->
@@ -397,7 +393,7 @@ if (searchInputs.contains(document.activeElement)) {
   <!-------------------------------Events Pins End----------------------------------------->
 
 
-   <!-------------------------------ConsoleLog NewsAPI Begin-----------------------------------------> 
+  <!-------------------------------ConsoleLog NewsAPI Begin----------------------------------------->
 
   <!--<script>
     async function main() {
@@ -421,7 +417,7 @@ if (searchInputs.contains(document.activeElement)) {
     main();
   </script>-->
 
-    <!--<script>
+  <!--<script>
     async function main() {
       async function giveMeDataAbout(country, date, apiKey) {
         return await fetch(`https://newsapi.org/v2/top-headlines?country=${country}&from=${date}&to=${date}&apiKey=${apiKey}`)
@@ -443,7 +439,7 @@ if (searchInputs.contains(document.activeElement)) {
     main();
   </script>-->
 
-      <!--<script>
+  <!--<script>
     async function main() {
       async function giveMeDataAbout(country, apiKey) {
         return await fetch(`https://newsapi.org/v2/top-headlines?country=${country}&from=2023-02-06&to=2023-02-07&apiKey=${apiKey}`)
@@ -463,7 +459,7 @@ if (searchInputs.contains(document.activeElement)) {
     main();
   </script>-->
 
-    <!--<script>
+  <!--<script>
     async function main() {
       async function giveMeDataAbout(country, apiKey) {
         return await fetch(`https://newsapi.org/v2/sources?country=${country}&apiKey=${apiKey}`)
@@ -486,7 +482,7 @@ if (searchInputs.contains(document.activeElement)) {
     main();
   </script>-->
 
-     <!-------------------------------ConsoleLog NewsAPI End-----------------------------------------> 
+  <!-------------------------------ConsoleLog NewsAPI End----------------------------------------->
 
   <!--//////////////////////////////////-->
 
@@ -495,4 +491,5 @@ if (searchInputs.contains(document.activeElement)) {
   <!-------------------------------Footer Begin----------------------------------------->
 
 </body>
+
 </html>
