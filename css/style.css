@@ -146,7 +146,7 @@ p.news {
     padding: 14px 16px;
     text-decoration: none;
     display: block;
-    background-color: #1a2a4a;
+    background-color: #1a2a4a; 
   }
 
   ul.nav>li.title a {
