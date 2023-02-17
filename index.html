@@ -21,9 +21,11 @@
     })
   </script>-->
 
-
-
-
+  <!--responsive nav routing
+    <script src="js/page-routing.js"></script>
+  
+  -->
+  <script src="js/navdeck.js"></script>
 
   <!--Styling-->
   <link rel="stylesheet" href="css/style.css" />
@@ -32,7 +34,7 @@
     @import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Questrial&display=swap');
   </style>
 
-</head>
+</head> 
 
 <body>
   <!-------------------------------Top of Page Begin----------------------------------------->
@@ -41,29 +43,25 @@
     <!-------------------------------Navigation Deck Begin----------------------------------------->
 
     <nav>
-      <ul class="nav">
-        <li>
-          <a href="index.html" style="border-top: 6px solid #29aceb; height: 13px;">
-            News
-          </a>
-        </li>
-        <li>
-          <a href="about.html">About</a>
-        </li>
-        <li><a href="trends.html">Compare Trends</a></li>
-        <li><a href="search.html">Search</a></li>
-
-        <li class="title">
-          <a style="overflow-wrap: normal;" href="#index">Anchored News</a>
-        </li>
-        <li style="float: right;">
-          <a href="">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</a>
-        </li>
-      </ul>
+      <div class="nav-container">
+        <ul class="nav" id="nav">
+          <li class="responsive-nav__item" id="nav-item-home">
+            <a href="#index" class="responsive-nav__link">News</a>
+          </li>
+          <li class="responsive-nav__item" id="nav-item-about">
+            <a href="about.html" class="responsive-nav__link">About</a>
+          </li>
+          <li class="responsive-nav__item" id="nav-item-trends"><a href="#trends" class="responsive-nav__link">Trends</a></li>
+          <li class="responsive-nav__item" id="nav-item-search"><a href="#search" class="responsive-nav__link">Search</a></li>
+          <li class="title" id="nav-item-title"><a href="#index">Anchored News</a></li>
+          <li class="refresh" style="float: right;"><a href="">&nbsp; &nbsp; &nbsp; &nbsp;</a></li>
+          <li class="headlines"><div class="ticker-bg"></div></li>
+        </ul>
+      </div>
     </nav>
-
+   
     <!-------------------------------Navigation Deck End----------------------------------------->
-
+  
     <div class="nav" id="message">
       <p class="message">
         Anchored News is an ongoing exploration of news content, data visualization,
