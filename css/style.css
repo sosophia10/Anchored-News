@@ -763,23 +763,75 @@ p.news {
 /*Map Control Box End-----------------------------------------*/
 
 /*Webpage Scrollbar-----------------------------------------*/
+/*For Chrome and Safari*/
 /* width */
 ::-webkit-scrollbar {
   width: 1VW;
 }
-
 /* Track */
 ::-webkit-scrollbar-track {
   background-image: linear-gradient(#E3E3E3);
 }
-
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: #214263;
 }
-
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
+  background: rgba(103, 148, 220, 0.5);
+}
+
+/*For Firefox*/
+/* width */
+::-moz-scrollbar {
+  width: 1VW;
+}
+/* Track */
+::-moz-scrollbar-track {
+  background-image: linear-gradient(#E3E3E3);
+}
+/* Handle */
+::-moz-scrollbar-thumb {
+  background: #214263;
+}
+/* Handle on hover */
+::-moz-scrollbar-thumb:hover {
+  background: rgba(103, 148, 220, 0.5);
+}
+
+/*For Internet Explorer*/
+/* width */
+::-ms-scrollbar {
+  width: 1VW;
+}
+/* Track */
+::-ms-scrollbar-track {
+  background-image: linear-gradient(#E3E3E3);
+}
+/* Handle */
+::-ms-scrollbar-thumb {
+  background: #214263;
+}
+/* Handle on hover */
+::-ms-scrollbar-thumb:hover {
+  background: rgba(103, 148, 220, 0.5);
+}
+
+/*For Opera*/
+/* width */
+::-o-scrollbar {
+  width: 1VW;
+}
+/* Track */
+::-o-scrollbar-track {
+  background-image: linear-gradient(#E3E3E3);
+}
+/* Handle */
+::-o-scrollbar-thumb {
+  background: #214263;
+}
+/* Handle on hover */
+::-o-scrollbar-thumb:hover {
   background: rgba(103, 148, 220, 0.5);
 }
 /*Webpage Scrollbar End-----------------------------------------*/
@@ -851,19 +903,54 @@ p.news {
   max-height: 20px;
 }
 
+/*For Chrome and Safari*/
 #sources::-webkit-scrollbar-track {
   background: #214263;
 }
-
 /* Handle */
 #sources::-webkit-scrollbar-thumb {
   background: #E3E3E3;
 }
-
-
 #sources::-webkit-scrollbar-thumb:hover {
   background: #CCC;
 }
+
+/*For Firefox*/
+#sources::-moz-scrollbar-track {
+  background: #214263;
+}
+/* Handle */
+#sources::-moz-scrollbar-thumb {
+  background: #E3E3E3;
+}
+#sources::-moz-scrollbar-thumb:hover {
+  background: #CCC;
+}
+
+/*For Opera*/
+#sources::-o-scrollbar-track {
+  background: #214263;
+}
+/* Handle */
+#sources::-o-scrollbar-thumb {
+  background: #E3E3E3;
+}
+#sources::-o-scrollbar-thumb:hover {
+  background: #CCC;
+}
+
+/*For Internet Explorer*/
+#sources::-ms-scrollbar-track {
+  background: #214263;
+}
+/* Handle */
+#sources::-ms-scrollbar-thumb {
+  background: #E3E3E3;
+}
+#sources::-ms-scrollbar-thumb:hover {
+  background: #CCC;
+}
+
 
 ::placeholder {
   color: #e3e3e3a6;
@@ -1262,6 +1349,9 @@ p.footer {
 *::before,
 *::after {
   -webkit-box-sizing: padding-box;
+  -moz-box-sizing: padding-box;
+  -o-box-sizing: padding-box;
+  -ms-box-sizing: padding-box;
   box-sizing: padding-box;
 }
 
@@ -1316,6 +1406,8 @@ ul.list li {
   background: rgba(103, 148, 220, 0.5);
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
+  -o-border-radius: 4px;
+  -ms-border-radius: 4px;
   border-radius: 4px;
 }
 
@@ -1329,7 +1421,9 @@ ul.list li {
   border-bottom: 1px solid #E3E3E3;
   position: relative;
   -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
   -o-transition: all 0.4s ease;
+  -ms-transition: all 0.4s ease;
   transition: all 0.4s ease;
 }
 
