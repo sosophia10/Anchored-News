@@ -79,34 +79,22 @@
   <!--<script src="https://d3js.org/d3.v4.min.js"></script>-->
   <script type="text/javascript" src="js/mapcontrol.js"></script>
 
-  <div id="controltab"><img src="../images/compass-w.png" class="tabicon"></img></div>
+  <div id="controltab"><img src="images/compass-w.png" class="tabicon" alt="Open/Close Map Controls"></img></div>
   <div id="controlpanel">
     <!--Map Control Box-->
     <div id="control">
       <div id="selected-country"></div> <!--DISPLAY NAME OF COUNTRY BEING HOVERED-->
       <div id="controlmap" class="">
         <div id="controlbox" class="feed-span control">
-          <!--Map Toggle-->
-          <!--<button class=default href="javascript:;" onmousedown="toggleDiv('mapid');">Toggle Globe |
-                    Equirectangular</button>-->
 
-          <!--Mini map-->
-          <div id="widget">
-            <div id="markerbounds">
-              <div id="box">
-                <div id="marker"></div>
-              </div>
-            </div>
-            <div>
-              <p id="coord"></p>
-            </div>
-          </div>
 
-          <!--Scale/Zoom-->
+          <!--Projection-->
           <div class="projection-type item">
             <div><select class="default" name="type" value="150"></select></div>
           </div>
-          <div class="slider item">
+
+          <!--Scale/Zoom-->
+          <!--<div class="slider item">
             <div class="label">
               scale (
               <span class="value">250</span>
@@ -165,7 +153,8 @@
               <input class="controlslide" type="range" name="translateY" min="0" max="500" value="250" />
               <span>500</span>
             </div>
-          </div>
+          </div>-->
+
           <!--Rotation-->
           <div class="slider item">
             <div class="label">
@@ -248,7 +237,7 @@
   <div class="background-placeholder"></div> <!--provides scrolling space for access to map.-->
 
 
-  <div id="tab"><img src="../images/filter-w.png" class="tabicon"></img></img></div>
+  <div id="tab"><img src="images/filter-w.png" class="tabicon" alt="Open/Close Filter and Results"></img></div>
   <div id="panel">
     <div class="wrapper">
       <h1>NEWS FEED FILTER</h1>
@@ -321,10 +310,7 @@
               });
             });
           </script>
-
-
         </div>
-        <div id="results"></div>
     </div>
   </div>
 
