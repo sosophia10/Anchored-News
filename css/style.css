@@ -1129,12 +1129,12 @@ button {
 
 .info p {
   margin: 5px;
-  font-size: 1em;
+  font-size: 16px;
 }
 
 .anchorednews {
   font-weight: bold;
-  font-size: 1.1em;
+  font-size: 14px;
   margin: 5px;
 }
 
@@ -1267,7 +1267,7 @@ p.footer {
 
 .tickerwrapper {
   /* the outer div */
-  font-size: 25px;
+  font-size: 24px;
   line-height: 30px;
   position: relative;
   top: 10px;
@@ -1324,7 +1324,7 @@ ul.list li {
   display: block;
   padding: 15px 15px 15px 20px;
   color: #E3E3E3;
-  font-size: 1.1em;
+  font-size: 18px;
   font-weight: 100;
   border-bottom: 1px solid #E3E3E3;
   position: relative;
@@ -1351,7 +1351,7 @@ ul.list li {
 .accordion li i.fa-chevron-down {
   right: 12px;
   left: auto;
-  font-size: 1.2em;
+  font-size: 16px;
 }
 
 .accordion li.open .link {
@@ -1379,7 +1379,7 @@ ul.list li {
   overflow-wrap: break-word;
   display: none;
   background: rgba(30, 60, 90, 0.8);
-  font-size: 1.1em;
+  font-size: 16px;
   margin-right: 20px;
   border-bottom: 1px solid #E3E3E3;
   margin-left: -40px;
