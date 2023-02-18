@@ -788,7 +788,7 @@ p.news {
 
 
 #searchInputs {
-
+  z-index:5;
   display: flex;
   flex-wrap: nowrap;
   overflow-x: scroll;
@@ -1379,7 +1379,7 @@ ul.list li {
   overflow-wrap: break-word;
   display: none;
   background: rgba(30, 60, 90, 0.8);
-  font-size: 14px;
+  font-size: 1.1em;
   margin-right: 20px;
   border-bottom: 1px solid #E3E3E3;
   margin-left: -40px;
