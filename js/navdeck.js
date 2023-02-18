@@ -118,8 +118,8 @@ function moveLine() {
   var content = document.getElementById("content");
   content.appendChild(insertBtn);
   
-  var root = document.documentElement;
-  root.className = root.className + " js";
+  var navRoot = document.documentElement;
+  navRoot.className = navRoot.className + " js";
   $('#toggleBtn').on('click', function (event) {
-    toggleClass(root, "bg-light")
+    toggleClass(navRoot, "bg-light")
   });
