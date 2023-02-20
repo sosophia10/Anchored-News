@@ -99,7 +99,7 @@ function update() {
     .on('mouseover', function(d) {
       d3.select(this).style('cursor', 'pointer');
       tooltipContainer
-        .style('display', 'inline-block')
+        .style('display', 'inline-block') 
         .html(d.properties.name);
     })
     // Remove country name from tooltip container on mouseout
