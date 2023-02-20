@@ -57,6 +57,33 @@ const countryCodeMap = {
 
 
 
+
+/////////////////////////////////////////////////
+//const dates = ["23-02-16", "23-02-17"];
+//const date = "23-02-17";
+
+/*const root = document.getElementById("sources");
+let code = "us";
+let countryName = getCountryFullName(code);
+
+function getCountryFullName(code) {
+return countryCodeMap[code.toLowerCase()] || "Unknown";
+}
+
+//const src = `data/json/${date}`;
+
+//fetch(`${src}/${code}.json`)
+
+fetch(`data/json/23-02-17/${code}.json`)
+.then(response => response.json())
+  .then(data => {
+
+    data.articles.forEach(article => {*/
+//////////////WHY DOES THIS NOT WORK IT'S LITERALLY THE EXACT SAME AS THE WORKING CODE BELOW SCREW YOU JAVASCRIPT/////////////////////////////////
+ 
+
+
+///*
 const root = document.getElementById("sources");
 let code = "us";
 let countryName = getCountryFullName(code);
@@ -65,10 +92,14 @@ function getCountryFullName(code) {
 return countryCodeMap[code.toLowerCase()] || "Unknown";
 }
 
-fetch(`data/${code}-headlines.json`)
+fetch(`data/json/23-02-17/${code}-headlines.json`)
 .then(response => response.json())
 .then(data => {
     data.articles.forEach(article => {
+
+        //*/
+
+        
         const card = document.createElement("li");
         card.classList.add("card");
 
@@ -88,7 +119,6 @@ fetch(`data/${code}-headlines.json`)
         sourceAndDate.classList.add("info");
 
         const source = document.createElement("p");
-        
         source.innerHTML = `Source: ${article.source.name} &nbsp; | &nbsp; ${countryName}`;
         sourceAndDate.appendChild(source);
 
