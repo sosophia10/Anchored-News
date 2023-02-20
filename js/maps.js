@@ -88,19 +88,36 @@ function update() {
   .selectAll('path')
   .data(geojson.features)
 
-u.enter()
-  .append('path')
-  .merge(u)
-  .attr('d', geoGenerator)
-  .attr('class', 'country')
-  .on('mouseover', function(d) {
-    d3.select(this).style('cursor', 'pointer');
-    d3.select('body').append('div')
-      .attr('class', 'tooltip')
-      .style('left', (d3.event.pageX + 10) + 'px')
-      .style('top', (d3.event.pageY - 10) + 'px')
-      .style('display', 'inline-block')
-      .html(d.properties.name);
+  const tooltipContainer = d3.select('.tooltip-container');
+
+  // Add country name to tooltip container on mouseover
+  u.enter()
+    .append('path')
+    .merge(u)
+    .attr('d', geoGenerator)
+    .attr('class', 'country')
+    .on('mouseover', function(d) {
+      d3.select(this).style('cursor', 'pointer');
+      tooltipContainer
+        .style('display', 'inline-block')
+        .html(d.properties.name);
+    })
+    // Remove country name from tooltip container on mouseout
+    .on('mouseout', function() {
+      tooltipContainer.style('display', 'none');
+    });
+  
+
+// Attach a mousemove event listener to the document
+document.addEventListener('mousemove', (event) => {
+  // Get the mouse position
+  const mouseX = event.pageX;
+  const mouseY = event.pageY;
+
+  // Set the position of the tooltip container to be equal to the mouse position
+  tooltipContainer
+    .style('left', mouseX + 'px')
+    .style('top', mouseY + 'px');
 });
 
 
