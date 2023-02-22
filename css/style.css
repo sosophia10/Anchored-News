@@ -34,6 +34,59 @@ html {
   padding: 0
 }
 
+/*G Translate Bar*/
+.gtranslate_wrapper{
+  margin-bottom: 12px;
+  margin-top: -12px;
+  margin-left: 12px;
+  position: relative;
+  display: inline-block;
+
+}
+.gt_selector {
+
+  font-size: 16px;
+  background-color: rgba(103, 148, 220, 0.5);
+  min-width: 80px;
+  font-size: 16px;
+  padding: 15px 0.2vw 15px 10px;
+  border: 1px solid rgba(103, 148, 220, 0.5);
+  color: #E3E3E3;
+  cursor: pointer;
+  
+
+}
+
+
+/* Target the select button */
+
+.gt_selector option{
+
+  font-size: 16px;
+  background-color: #E3E3E3;
+  min-width: 80px;
+  font-size: 16px;
+  color: #030609;
+  max-height: 20px;
+  cursor: pointer;
+}
+
+.gtranslate_wrapper .gt_selector:not(.notranslate) option:hover {
+
+    font-size: 16px;
+    background-color: rgba(103, 148, 220, 1)!important;
+    min-width: 80px;
+    font-size: 16px;
+    color: #E3E3E3!important;
+    max-height: 20px;
+    cursor: pointer;
+  
+}
+
+
+
+  /*//////////////*/
+
 h1 {
   color: #E3E3E3;
   text-align: center;

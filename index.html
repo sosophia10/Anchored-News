@@ -54,25 +54,32 @@
       <div class="nav-container">
         <ul class="nav" id="nav">
           <li class="responsive-nav__item" id="nav-item-home">
-            <a href="#index" class="responsive-nav__link">News</a>
+            <a href="#" class="responsive-nav__link">News</a>
           </li>
           <li class="responsive-nav__item" id="nav-item-about">
             <a href="about.html" class="responsive-nav__link">About</a>
           </li>
-          <li class="responsive-nav__item" id="nav-item-trends"><a href="#trends"
-              class="responsive-nav__link">Trends</a></li>
-          <li class="responsive-nav__item" id="nav-item-search"><a href="#search"
-              class="responsive-nav__link">Search</a></li>
-          <li class="anchorednews" id="nav-item-title"><a href="#index">Anchored News</a></li>
-          <li class="refresh" style="float: right;"><a href="">&nbsp; &nbsp; &nbsp; &nbsp;</a></li>
+          <li class="responsive-nav__item" id="nav-item-trends">
+            <a href="#trends" class="responsive-nav__link">Trends</a>
+          </li>
+          <li class="responsive-nav__item" id="nav-item-search">
+            <a href="#search" class="responsive-nav__link">Search</a>
+          </li>
+          <li class="anchorednews" id="nav-item-title">
+            <a href="/" class="responsive-nav__link">Anchored News</a>
+          </li>
+          <li class="refresh" style="float: right;">
+            <a href="">&nbsp; &nbsp; &nbsp; &nbsp;</a>
+          </li>
           <li class="headlines">
             <div class="ticker-bg"></div>
           </li>
         </ul>
       </div>
     </nav>
+    <!--<div id="app"></div>
+    <script src="js/page-routing.js"></script>-->
 
-  
 
     <!-------------------------------Navigation Deck End----------------------------------------->
 
@@ -291,6 +298,35 @@
             });
           </script>
 
+          <!--Google Translate is ugly-->
+          <!--<div id="google_translate_element"></div>
+
+          <script type="text/javascript">
+            function googleTranslateElementInit() {
+              new google.translate.TranslateElement({ pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+            }
+          </script>
+          <script type="text/javascript"
+            src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+            ----------------------->
+
+          <!--G Translate Widget-->
+          <div class="gtranslate_wrapper"></div>
+          <script>
+              window.gtranslateSettings = {
+                  "detect_browser_language": false,
+                  "detect_input_language": false,
+                  "wrapper_selector": ".gtranslate_wrapper",
+              };
+          </script>
+          <script src="js/gtranslate_dropdown.js" defer></script>
+          
+          
+          <!--<div class="gtranslate_wrapper"></div>
+<script>window.gtranslateSettings = {"default_language":"en","wrapper_selector":".gtranslate_wrapper","switcher_horizontal_position":"right","alt_flags":{"en":"usa"}}</script>
+<script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
+            https://gtranslate.io/website-translator-widget-->
+
           <div class="card">
 
             <ul id="sources"></ul>
@@ -360,7 +396,7 @@
 
 
   <!-------------------------------Map Begin----------------------------------------->
-  <div class="tooltip-container"></div> 
+  <div class="tooltip-container"></div>
 
   <!--D3 MAP IN BACKGROUND-->
   <div class="feed-background">
@@ -446,7 +482,7 @@
             return data.articles
           });
       }
-      var articles = await giveMeDataAbout('za', '631dc06585164470aacefd1118f11c15');
+      var articles = await giveMeDataAbout('us', '631dc06585164470aacefd1118f11c15');
       for (var i = 0; i < articles.length; i++) {
         console.log(articles[i].title);
         console.log(articles[i].source.name);

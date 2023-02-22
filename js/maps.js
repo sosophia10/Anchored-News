@@ -39,8 +39,8 @@ let windoww = window.innerWidth;
 var state = {
   type: 'Equirectangular',
   scale: 250,
-  translateX: windoww/2,
-  translateY: windowh/2.8,
+  translateX: windoww / 2,
+  translateY: windowh / 2.8,
   centerLon: 0,
   centerLat: 0,
   rotateLambda: 0.1,
@@ -51,7 +51,7 @@ var state = {
 function initcontrol() {
   d3.select('#control')
     .selectAll('.slider.item input')
-    .on('input', function(d) {
+    .on('input', function (d) {
       var attr = d3.select(this).attr('name');
       state[attr] = this.value;
       d3.select(this.parentNode.parentNode).select('.value').text(this.value);
@@ -59,7 +59,7 @@ function initcontrol() {
     });
 
   d3.select('#control .projection-type select')
-    .on('change', function(d) {
+    .on('change', function (d) {
       state.type = this.options[this.selectedIndex].value;
       update()
     })
@@ -67,9 +67,10 @@ function initcontrol() {
     .data(projectionTypes)
     .enter()
     .append('option')
-    .attr('value', function(d) {return d;})
-    .text(function(d) {return d;});
+    .attr('value', function (d) { return d; })
+    .text(function (d) { return d; });
 }
+
 
 
 function update() {
@@ -85,8 +86,8 @@ function update() {
 
   // Update world map
   var u = d3.select('g.map')
-  .selectAll('path')
-  .data(geojson.features)
+    .selectAll('path')
+    .data(geojson.features)
 
   const tooltipContainer = d3.select('.tooltip-container');
 
@@ -96,91 +97,87 @@ function update() {
     .merge(u)
     .attr('d', geoGenerator)
     .attr('class', 'country')
-    .on('mouseover', function(d) {
+    //hover actions    
+    .on('mouseover', function (d) {
       d3.select(this).style('cursor', 'pointer');
       tooltipContainer
         .style('display', 'inline-block')
         .html(d.properties.name);
     })
     // Remove country name from tooltip container on mouseout
-    .on('mouseout', function() {
+    .on('mouseout', function () {
       tooltipContainer.style('display', 'none');
     });
-  
 
-// Attach a mousemove event listener to the document
-document.addEventListener('mousemove', (event) => {
-  // Get the mouse position
-  const mouseX = event.pageX;
-  const mouseY = event.pageY;
+  // Attach a mousemove event listener to the document
+  document.addEventListener('mousemove', (event) => {
+    // Get the mouse position
+    const mouseX = event.pageX;
+    const mouseY = event.pageY;
 
-  // Set the position of the tooltip container to be equal to the mouse position
-  tooltipContainer
-    .style('left', mouseX + 'px')
-    .style('top', mouseY + 'px');
-});
-
-
-
-// Update projection center
-var projectedCenter = projection([state.centerLon, state.centerLat]);
-d3.select('.projection-center')
-.attr('cx', projectedCenter[0])
-.attr('cy', projectedCenter[1]);
-
-// Update graticule
-d3.select('.graticule path')
-.datum(graticule())
-.attr('d', geoGenerator);
-
-// Update circles
-u = d3.select('.circles')
-.selectAll('path')
-.data(circles.map(function(d) {
-geoCircle.center(d);
-return geoCircle();
-}));
-
-u.enter()
-.append('path')
-.merge(u)
-.attr('d', geoGenerator);
-}
-
-//drag to translate
-var drag = d3.drag()
-   .on("drag", function() {
-      state.translateX += d3.event.dx;
-      state.translateY += d3.event.dy;
-      update();
-   });
-
-d3.select(".feed-background")
-   .call(drag);
-
-
-   //zoom to scale
-   var zoom = d3.zoom()
-   .scaleExtent([90, 900])
-   .on("zoom", function() {
-      state.scale = d3.event.transform.k * 2;
-      update();
-   });
-
-d3.select(".feed-background")
-   .call(zoom);
-
-//source:
-//https://gist.github.com/d3indepth/f28e1c3a99ea6d84986f35ac8646fac7#file-ne_110m_land-json
-//d3.json('https://gist.githubusercontent.com/d3indepth/f28e1c3a99ea6d84986f35ac8646fac7/raw/c58cede8dab4673c91a3db702d50f7447b373d98/ne_110m_land.json', function(err, json) {
-//d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson").then(function(data) {
-d3.json("https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json", function(error, data) { 
-
-    geojson = data;
-    initcontrol();
-    update();
+    // Set the position of the tooltip container to be equal to the mouse position
+    tooltipContainer
+      .style('left', mouseX + 'px')
+      .style('top', mouseY + 'px');
   });
 
 
-//potential source
-//https://github.com/lutangar/cities.json
+
+  // Update projection center
+  var projectedCenter = projection([state.centerLon, state.centerLat]);
+  d3.select('.projection-center')
+    .attr('cx', projectedCenter[0])
+    .attr('cy', projectedCenter[1]);
+
+  // Update graticule
+  d3.select('.graticule path')
+    .datum(graticule())
+    .attr('d', geoGenerator);
+
+  // Update circles
+  u = d3.select('.circles')
+    .selectAll('path')
+    .data(circles.map(function (d) {
+      geoCircle.center(d);
+      return geoCircle();
+    }));
+
+  u.enter()
+    .append('path')
+    .merge(u)
+    .attr('d', geoGenerator);
+}
+
+
+//drag to translate
+var drag = d3.drag()
+  .on("drag", function () {
+    state.translateX += d3.event.dx;
+    state.translateY += d3.event.dy;
+    update();
+  });
+
+d3.select(".feed-background")
+  .call(drag);
+
+
+//zoom to scale
+var zoom = d3.zoom()
+  .scaleExtent([90, 900])
+  .on("zoom", function () {
+    state.scale = d3.event.transform.k * 2;
+    update();
+  });
+
+d3.select(".feed-background")
+  .call(zoom);
+
+//source:
+d3.json("../data/geojson/world-coordinates.geo.json", function (error, data) {
+
+  geojson = data;
+  initcontrol();
+  update();
+});
+
+

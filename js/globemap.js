@@ -145,14 +145,15 @@ function rotate(elapsed) {
 }
 
 function loadData(cb) {
-  d3.json('https://unpkg.com/world-atlas@1/world/110m.json', function(error, world) {
-    if (error) throw error
-    d3.tsv('https://gist.githubusercontent.com/mbostock/4090846/raw/07e73f3c2d21558489604a0bc434b3a5cf41a867/world-country-names.tsv', function(error, countries) {
+  d3.json('../data/geojson/globe.json', function(error, world) {
+    if (error) throw error;
+    d3.tsv('../data/geojson/world-country-names.tsv', function(error, countries) {
       if (error) throw error
       cb(world, countries)
     })
   })
 }
+
 
 // https://github.com/d3/d3-polygon
 function polygonContains(polygon, point) {

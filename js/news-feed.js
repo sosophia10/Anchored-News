@@ -1,3 +1,4 @@
+const root = document.getElementById("sources");
 const countryCodeMap = {
     ae: "United Arab Emirates",
     ar: "Argentina",
@@ -56,34 +57,31 @@ const countryCodeMap = {
 };
 
 
-
-
-/////////////////////////////////////////////////
-//const dates = ["23-02-16", "23-02-17"];
-//const date = "23-02-17";
-
-/*const root = document.getElementById("sources");
-let code = "us";
-let countryName = getCountryFullName(code);
-
 function getCountryFullName(code) {
-return countryCodeMap[code.toLowerCase()] || "Unknown";
+    return countryCodeMap[code.toLowerCase()] || "Unknown";
 }
 
-//const src = `data/json/${date}`;
 
-//fetch(`${src}/${code}.json`)
+const dates = ["23-02-17"];//, "23-02-17"]; // add all your desired dates here
 
-fetch(`data/json/23-02-17/${code}.json`)
-.then(response => response.json())
-  .then(data => {
+for (let i = 0; i < dates.length; i++) {
+    const date = dates[i];
+    const src = `data/json/${date}`;
+    const countryCodes = Object.keys(countryCodeMap);
 
-    data.articles.forEach(article => {*/
-//////////////WHY DOES THIS NOT WORK IT'S LITERALLY THE EXACT SAME AS THE WORKING CODE BELOW SCREW YOU JAVASCRIPT/////////////////////////////////
- 
+    for (let j = 0; j < countryCodes.length; j++) {
+        const code = countryCodes[j];
+        const countryName = getCountryFullName(code);
+
+        fetch(`${src}/${code}.json`)
+            .then(response => response.json())
+            .then(data => {
+                data.articles.forEach(article => {
 
 
-///*
+
+/* ORIGINAL
+let date = "23-02-17";
 const root = document.getElementById("sources");
 let code = "us";
 let countryName = getCountryFullName(code);
@@ -92,12 +90,15 @@ function getCountryFullName(code) {
 return countryCodeMap[code.toLowerCase()] || "Unknown";
 }
 
-fetch(`data/json/23-02-17/${code}-headlines.json`)
+const src = `data/json/${date}`;
+fetch(`${src}/${code}.json`)
+//fetch(`data/json/23-02-17/${code}.json`)
 .then(response => response.json())
-.then(data => {
+  .then(data => {
+
     data.articles.forEach(article => {
 
-        //*/
+        */
 
         
         const card = document.createElement("li");
@@ -148,3 +149,73 @@ fetch(`data/json/23-02-17/${code}-headlines.json`)
         root.appendChild(card);
     });
 });
+}
+}
+
+function populateSourcesList(countryCode) {
+    const date = "23-02-17"; // You may want to change this to use a dynamic date value based on your use case
+    const src = `data/json/${date}`;
+    const root = document.getElementById("sources");
+  
+    fetch(`${src}/${countryCode}.json`)
+      .then(response => response.json())
+      .then(data => {
+        // Clear the list before adding new items
+        root.innerHTML = "";
+  
+        data.articles.forEach(article => {
+          // Create the card element and add the article data
+          const card = document.createElement("li");
+          card.classList.add("card");
+  
+          const link = document.createElement("a");
+          link.href = article.url;
+          link.target = "_blank";
+          link.classList.add("source");
+          link.setAttribute("id", "source");
+          card.appendChild(link);
+  
+          const title = document.createElement("p");
+          title.classList.add("title");
+          title.innerHTML = `${article.title}`;
+          link.appendChild(title);
+  
+          const sourceAndDate = document.createElement("div");
+          sourceAndDate.classList.add("info");
+  
+          const source = document.createElement("p");
+          source.innerHTML = `Source: ${article.source.name} &nbsp; | &nbsp; ${getCountryFullName(countryCode)}`;
+          sourceAndDate.appendChild(source);
+  
+          const publishedAt = document.createElement("p");
+          const date = new Date(article.publishedAt);
+          const monthNames = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+          ];
+          const formattedDate = `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+          publishedAt.innerHTML = `Published: ${formattedDate}`;
+          sourceAndDate.appendChild(publishedAt);
+  
+          link.appendChild(sourceAndDate);
+  
+          // Add the card to the list
+          root.appendChild(card);
+        });
+      })
+      .catch(error => {
+        console.error(`Error fetching news data for ${countryCode}`, error);
+        // Show an error message on the UI
+        root.innerHTML = `<li class="error">Error fetching news data for ${countryCode}. Please try again later.</li>`;
+      });
+  }
