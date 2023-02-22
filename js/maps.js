@@ -173,7 +173,7 @@ d3.select(".feed-background")
   .call(zoom);
 
 //source:
-d3.json("../data/geojson/world-coordinates.geo.json", function (error, data) {
+d3.json("data/geojson/world-coordinates.geo.json", function (error, data) {
 
   geojson = data;
   initcontrol();
