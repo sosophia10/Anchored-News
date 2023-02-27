@@ -28,16 +28,21 @@
 
         @media only screen and (max-width: 400px) {
             .container {
-                margin: 0;
+                overflow: hidden;
+                padding-top: 56.25%;
+                /* 16:9*/
+                position: relative;
 
             }
 
 
             iframe {
-                display: block;
-                height: 100vh;
-                width: 100vw;
-                border: none;
+                border: 0;
+                height: 100%;
+                left: 0;
+                position: absolute;
+                top: 0;
+                width: 100%;
             }
 
         }
@@ -45,16 +50,21 @@
         @media only screen and (min-width: 400px) {
 
             .container {
-                margin: 0;
+                overflow: hidden;
+                padding-top: 56.25%;
+                /* 16:9*/
+                position: relative;
 
             }
 
 
             iframe {
-                display: block;
-                height: 100vh;
-                width: 100vw;
-                border: none;
+                border: 0;
+                height: 100%;
+                left: 0;
+                position: absolute;
+                top: 0;
+                width: 100%;
             }
 
         }
