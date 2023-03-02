@@ -164,7 +164,7 @@ p.news {
 
 
   nav {
-    padding-bottom: 40px;
+    padding-bottom: 13px;
     width: 100%;
     height: 40px;
     /*Uppercase text in nav bar*/
@@ -207,7 +207,7 @@ p.news {
     padding: 14px 16px;
     text-decoration: none;
     display: flex;
-    background-color: #1a2a4a;
+    background-color: #1E3C5A;
     justify-content: center;
     align-items: center;
   }
@@ -227,7 +227,7 @@ p.news {
   }
 
   ul.nav>li a:active {
-    background-color: #214263;
+    background-color: #1E3C5A;
   }
   
 
@@ -258,7 +258,7 @@ p.news {
     padding: 14px 16px;
     text-decoration: none;
     display: flex;
-    background-color: #1a2a4a;
+    background-color: #1E3C5A;
     border: none;
     border-radius: 0;
   }
@@ -285,7 +285,7 @@ p.news {
     padding: 14px 20px;
     text-decoration: none;
     display: flex;
-    background-color: #1a2a4a;
+    background-color: #1E3C5A;
     border: none;
     border-radius: 0;
     cursor: pointer;
@@ -316,9 +316,131 @@ p.news {
     height: 53px;
   }
   
+/*subnavigation for news page*/
 
+.secondary-nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.secondary-nav li {
+  z-index: 3;
+  background-color: #1E3C5A;
+  list-style: none;
+  padding-left: 10px;
+  width: 70px;
+  text-align: center;
+}
+
+
+.secondary-nav li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  color: #1E3C5A;
+  height: 53px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
   
+}
 
+.secondary-nav li a img {
+  margin-right: 10px;
+  width:50px;
+}
+
+.secondary-nav li:nth-child(1) a {
+  cursor: pointer;
+  background-image: url("../images/news-w.png");
+}
+
+.secondary-nav li:nth-child(1) a:hover {
+  background-color: #030609;
+  background-image: url("../images/news-b.png");
+}
+
+.secondary-nav li:nth-child(2) a {
+  cursor: pointer;
+  background-image: url("../images/filter-w.png");
+  background-size: 35px;
+}
+.secondary-nav li:nth-child(2) a:hover {
+  cursor: pointer;
+  background-color: #030609;
+  background-image: url("../images/filter-b.png");
+  background-size: 35px;
+}
+
+.secondary-nav li:nth-child(3) a {
+  background-image: url("../images/compass-w.png");
+  background-size: 40px;
+  margin-right: 10px;
+}
+.secondary-nav li:nth-child(3) a:hover {
+  background-color: #030609;
+  background-image: url("../images/compass-b.png");
+  background-size: 40px;
+  margin-right: 10px;
+}
+
+/*News Panels-----------------------------------------*/
+
+.panel {
+  z-index:3;
+  padding: 0 0 0 0;
+  position: fixed;
+  top: 106px;
+  left: -580px;
+  width: 500px;
+  height: 100%;
+  background-color: rgba(103, 148, 220, 0.5);
+  color: white;
+  transition: left 0.3s ease-out;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #1E3C5A;
+  color: #fff;
+}
+
+.panel-header h2 {
+  margin: 0;
+}
+
+.close-panel {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+
+}
+
+.panel-content {
+
+}
+
+.subnav-container {
+  position: relative;
+}
+
+.panel-open {
+  left: 0;
+}
+
+/*Homepage Message curently hidden-----------------------------------------*/
   
   .message {
     margin-top: 20px;
@@ -669,59 +791,18 @@ p.news {
 
 
 #searchInputs {
-  z-index:5;
   display: flex;
-  flex-wrap: nowrap;
-  overflow-x: scroll;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
-#dateInputMin {
-
-  background-size: 25px;
-  background-position: 10px 10px;
-  background-repeat: no-repeat;
-  background-color: rgba(103, 148, 220, 0.5);
-  width: 280px;
-  min-width:40px;
-  font-size: 16px;
-  padding: 15px 3vw 15px 2vw;
-  border: 1px solid rgba(103, 148, 220, 0.5);
-  color: #E3E3E3;
-  margin-bottom: 12px;
-  margin-top: 12px;
-  margin-left: -3px;
-  max-height: 20px;
-}
-
-#dateInputMax {
-
-  background-size: 25px;
-  background-position: 10px 10px;
-  background-repeat: no-repeat;
-  background-color: rgba(103, 148, 220, 0.5);
-  width: 280px;
-  min-width:40px;
-  font-size: 16px;
-  padding: 15px 1vw 15px 2vw;
-  border: 1px solid rgba(103, 148, 220, 0.5);
-  color: #E3E3E3;
-  margin-bottom: 12px;
-  margin-top: 12px;
-  margin-left: -3px;
-  margin-right: 12px;
-  max-height: 20px;
-}
-
-/*Search Style*/
 #sourceInput {
-
   background-image: url('../images/search-w.png');
   background-size: 25px;
   background-position: 10px 10px;
   background-repeat: no-repeat;
   background-color: rgba(103, 148, 220, 0.5);
   width: 100%;
-  min-width: 80px;
   font-size: 16px;
   padding: 15px 0.2vw 15px 40px;
   border: 1px solid rgba(103, 148, 220, 0.5);
@@ -729,8 +810,34 @@ p.news {
   margin-bottom: 12px;
   margin-top: 12px;
   margin-left: 12px;
+  margin-right: 24px;
   max-height: 20px;
 }
+
+#dateInputMin,
+#dateInputMax {
+  background-size: 25px;
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  background-color: rgba(103, 148, 220, 0.5);
+  width: 30%;
+  font-size: 16px;
+  padding: 15px 15px 15px 15px;
+  border: 1px solid rgba(103, 148, 220, 0.5);
+  color: #E3E3E3;
+  margin-left: 12px; margin-right: -12px;
+  margin-bottom: 24px;
+  max-height: 20px;
+}
+
+#dateInputMax {
+  margin-right: 12px;
+}
+
+
+
+
+
 
 /*For Chrome and Safari*/
 #sources::-webkit-scrollbar-track {
@@ -786,7 +893,7 @@ p.news {
 }
 
 #sources {
-  height: 200px;
+  height: 100%;
   overflow: auto;
   font-family: 'Questrial', "Helvetica Neue", Helvetica, sans-serif;
   list-style-type: none;
@@ -838,86 +945,12 @@ button {
 }
 
 
-#controltab{
-  z-index:3;
-  position: fixed;
-  left: 0;
-  width: 40px;
-  height: 40px;
-  background-color: rgba(103, 148, 220, 0.5);;
-  cursor: pointer;
-  overflow: hidden;
-}
-
-.tabicon{
-  z-index:5;
-  position:absolute;
-  padding: 5px;
-  top:0;
-  left: 0;
-  right: 0;
-  cursor: pointer;
-  min-width: 30px;
-  min-height: 30px;
-  width: 30px;
-  height: 30px;
-
-}
 
 
-#controlpanel{
-  z-index:2;
-  padding: 0px 30px;
-  position: fixed;
-  left: -3105px;
-  height: 330px;
-  width: 260px;
-  background-color: rgba(103, 148, 220, 0.5);
-  color: white;
-  transition: left 1s;
-  overflow: hidden;
-  overflow-y: scroll;
-}
-
-#controlpanel.open{
-  left:0;
-}
-
-
-#tab {
-  z-index:3;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 40px;
-  height: 40px;
-  background-color: rgba(103, 148, 220, 0.5);;
-  cursor: pointer;
-  overflow: hidden;
-}
-
-#panel {
-  z-index:2;
-  padding: 40px 40px;
-  position: fixed;
-  bottom: -440px;
-  left: 0;
-  right: 0;
-  height: 420px;
-  background-color: rgba(103, 148, 220, 0.5);
-  color: white;
-  transition: bottom 0.5s;
-  overflow: hidden;
-  overflow-y: scroll;
-}
-
-#panel.open {
-  bottom: 0;
-}
-
+/*-----------------------------------------------------------------------------------------------------------------*/
 
 .wrapper {
-  width: 100%;
+  width: 500px;
   height: span;
   margin-bottom: 0px;
   z-index: 5;
@@ -926,7 +959,7 @@ button {
 }
 
 .shortwrapper {
-  width: 100%;
+  width: 35%;
   height: 100%;
   margin-bottom: 60px;
   margin-top: 40px;
@@ -939,7 +972,7 @@ button {
   z-index: 0;
   /**/
   top: 80px;
-  width: 100%;
+  width: 35%;
   height: auto;
 }
 
@@ -1186,17 +1219,18 @@ p.footer {
 
 .tickerwrapper {
   /* the outer div */
-  font-size: 24px;
+  text-transform: none;
+  font-size: 22px;
   line-height: 30px;
   position: relative;
   top: 10px;
-  margin-bottom: 10px;
   left: 0%;
   color: #E3E3E3;
   width: 99.9%;
-  height: 30px;
+  height: 53px;
   overflow: hidden;
   cursor: pointer;
+  background-repeat: no-repeat;
 }
 
 ul.list {
