@@ -145,9 +145,9 @@ function rotate(elapsed) {
 }
 
 function loadData(cb) {
-  d3.json('../data/geojson/globe.json', function(error, world) {
+  d3.json('data/geojson/globe.json', function(error, world) {
     if (error) throw error;
-    d3.tsv('../data/geojson/world-country-names.tsv', function(error, countries) {
+    d3.tsv('data/geojson/world-country-names.tsv', function(error, countries) {
       if (error) throw error
       cb(world, countries)
     })
