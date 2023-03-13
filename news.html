@@ -11,6 +11,9 @@
     <script src="https://unpkg.com/topojson@3"></script>
     <script src="https://unpkg.com/d3-geo-projection"></script>
 
+
+    <!--sort of necessary styling sheet-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <!--JQuery Plugin-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -23,10 +26,51 @@
 
 
     <!--JQueryUI Plugins-->
-    <script src="//code.jquery.com/jquery-1.11.3.js"></script>
-    <script src="//code.jquery.com/ui/1.12.0-rc.1/jquery-ui.js"></script>
-    <!--sort of necessary styling sheet-->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="js/datepicker-ar.js"></script>
+    <script src="js/datepicker-fr.js"></script>
+    <script src="js/datepicker-he.js"></script>
+    <script src="js/datepicker-zh.js"></script>
+    <script>
+      $(function () {
+        var dateFormat = "mm/dd/yy",
+          from = $("#from")
+            .datepicker({
+              defaultDate: "+1w",
+              changeMonth: true,
+              numberOfMonths: 3
+            })
+            .on("change", function () {
+              to.datepicker("option", "minDate", getDate(this));
+            }),
+          to = $("#to").datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 3
+          })
+            .on("change", function () {
+              from.datepicker("option", "maxDate", getDate(this));
+            });
+  
+        function getDate(element) {
+          var date;
+          try {
+            date = $.datepicker.parseDate(dateFormat, element.value);
+          } catch (error) {
+            date = null;
+          }
+  
+          return date;
+        }
+  
+        $("#datepicker").datepicker($.datepicker.regional["fr"]);
+        $("#locale").on("change", function () {
+          $("#datepicker").datepicker("option",
+            $.datepicker.regional[$(this).val()]);
+        });
+      });
+    </script>
+
 
 <!--ticker scroll-->
     <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js" defer></script>
@@ -166,26 +210,25 @@
                     <div id="searchInputs">
                         <input type="text" id="sourceInput" onkeyup="searchFunction()"
                             placeholder="Search for news sources..." title="Type in a name" />
-                        <input type="text" id="dateInputMin" placeholder="From: MM/DD/YYYY"
+
+                            <!--date input widget (JQueryUI Dependent)-->
+                        <input type="text" id="from" placeholder="From: MM/DD/YYYY"
                             pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d">
-                        <input type="text" id="dateInputMax" placeholder="Until: MM/DD/YYYY"
+                        <input type="text" id="to" placeholder="Until: MM/DD/YYYY"
                             pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d">
+
+                              <select id="locale">
+                                <option value="ar">Arabic (&#x202B;(&#x627;&#x644;&#x639;&#x631;&#x628;&#x64A;&#x629;</option>
+                                <option value="zh-TW">Chinese Traditional (&#x7E41;&#x9AD4;&#x4E2D;&#x6587;)</option>
+                                <option value>English</option>
+                                <option value="fr" selected="selected">French (Fran&#xE7;ais)</option>
+                                <option value="he">Hebrew (&#x202B;(&#x5E2;&#x5D1;&#x5E8;&#x5D9;&#x5EA;</option>
+                              </select>
+                             
+
                         <!--<div class="feed"></div>-->
                     </div>
 
-                    <!--date input widget (JQueryUI Dependent)-->
-                    <script>
-                        $(document).ready(function () {
-                            $("#dateInputMin").datepicker({
-                                dateFormat: "mm/dd/yy"
-                            });
-                        });
-                        $(document).ready(function () {
-                            $("#dateInputMax").datepicker({
-                                dateFormat: "mm/dd/yy"
-                            });
-                        });
-                    </script>
 
                     <!--Google Translate is ugly-->
                     <!--<div id="google_translate_element"></div>
@@ -201,14 +244,16 @@
 
                     <!--G Translate Widget-->
                     <div class="gtranslate_wrapper"></div>
+                    <!--G Translate Widget-->
                     <script>
                         window.gtranslateSettings = {
-                            "detect_browser_language": false,
-                            "detect_input_language": false,
-                            "wrapper_selector": ".gtranslate_wrapper",
+                          "detect_browser_language": false,
+                          "detect_input_language": false,
+                          "wrapper_selector": ".gtranslate_wrapper",
                         };
-                    </script>
-                    <script src="js/gtranslate_dropdown.js" defer></script>
+                      </script>
+                      <script src="js/gtranslate_dropdown.js" defer></script>
+                      
 
 
                     <!--<div class="gtranslate_wrapper"></div>

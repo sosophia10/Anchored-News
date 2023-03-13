@@ -10,34 +10,82 @@
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>-->
 
   <link rel="stylesheet" href="css/style.css" />
+
+  <!--ticker scroll-->
+  <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js" defer></script>
+  <script src="js/ticketscroll.js" defer></script>
+
 </head>
 
 <body id="about">
     <div class="banner">
       <nav>
         <div class="nav-container">
-          <ul class="nav" id="nav">
-            <li class="anchorednews" id="nav-item-title">
-              <a href="#">Anchored News</a>
-            </li>
-            <li class="responsive-nav__item" id="nav-item-home">
-              <a href="news.html" class="responsive-nav__link">News</a>
-            </li>
-            <li class="responsive-nav__item" id="nav-item-trends">
-              <a href="trends.html" class="responsive-nav__link">Trends</a>
-            </li>
+            <ul class="nav" id="nav">
+                <li class="anchorednews" id="nav-item-title">
+                    <a href="#">Anchored News</a>
+                </li>
+                <li class="responsive-nav__item" id="nav-item-home">
+                    <a href="news.html" class="responsive-nav__link">News</a>
+                </li>
+                <li class="responsive-nav__item" id="nav-item-trends">
+                    <a href="trends.html" class="responsive-nav__link">Trends</a>
+                </li>
             <li class="responsive-nav__item right" id="nav-item-search">
               <div class="search-container responsive-nav__link">
-                <input type="text" class="search-input" placeholder="Search...">
-                <button type="submit" class="search-button"></button>
+                  <input type="text" class="search-input" placeholder="Search...">
+                  <button type="submit" class="search-button"></button>
               </div>
-            </li>
-            <li class="headlines">
-              <div class="ticker-bg"></div>
-            </li>
-          </ul>
-        </div>
-      </nav>
+          </li>
+
+              <div class="tickerwrapper">
+                  <ul class="list">
+                      <li class="listitem">
+                        <span>
+                          &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
+                          &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
+                          &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
+
+                        </span>
+                      </li>
+                      <li class="listitem">
+                          <span>What is the impact of effortless access to global news?</span>
+                        </li>
+                        <li class="listitem">
+                          <span>
+                            &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
+                            &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
+                            &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
+
+                          </span>
+                        </li>
+                        <li class="listitem">
+                          <span>
+                            How can Internet readers effectively analyze worldwide trends?
+                          </span>
+                        </li>
+                        <li class="listitem">
+                          <span>
+                            &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
+                            &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
+                            &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
+
+                          </span>
+                        </li>
+                        <li class="listitem">
+                          <span>
+                            How might normalizing the proactive comparison of news
+                            influence the narratives circulating events?
+                          </span>
+                        </li>
+                        </ul>
+              </div>
+
+      </ul>
+  </div>
+</nav>
       
       
 
@@ -164,7 +212,7 @@
 
       <!--Page-->
       <div class="shortwrapper">
-        <h1>WHAT IS ANCHORED NEWS?</h1>
+        <h1>WHAT IS ANCHORED NEWS ABOUT?</h1>
         <div>
           <!--Globe-->
           <h2 id="current"></h2>
@@ -175,259 +223,6 @@
           <script src="js/versor.js"></script>
           <script src="js/globemap.js"></script>
         </div>
-      </div>
-
-      <!--Ticker-->
-      <div class="tickerwrapper">
-        <ul class="list">
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-          <li class="listitem">
-            <span>What is the impact of effortless access to global news?</span>
-          </li>
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              How can Internet readers effectively analyze worldwide trends?
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              How might normalizing the proactive comparison of news
-              influence the narratives circulating events?
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-          <li class="listitem">
-            <span>
-              &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
-              &ensp; &ensp;
-            </span>
-          </li>
-        </ul>
-        <script
-          src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
-        <script src="js/ticketscroll.js"></script>
       </div>
 
       <footer>
