@@ -251,6 +251,7 @@ p.news {
   }
 
   .search-container:hover {
+    background-color: #030609;
     position: absolute;
     right: 0;
     display: flex;
@@ -268,6 +269,7 @@ p.news {
     background-color: #1E3C5A;
     border: none;
     border-radius: 0;
+    text-transform: uppercase;
   }
 
   .search-input:focus{
@@ -429,11 +431,21 @@ p.news {
 .close-panel {
   background-color: transparent;
   border: none;
-  color: #fff;
+  color: #E3E3E3;
   font-size: 24px;
   cursor: pointer;
-
+  
 }
+
+.close-panel:hover {
+  background-color: transparent;
+  border: none;
+  color: #29aceb;
+  font-size: 24px;
+  cursor: pointer;
+  
+}
+
 
 .panel-content {
 
@@ -837,8 +849,14 @@ p.news {
   max-height: 20px;
 }
 
-#to, #locale {
-  margin-right: 12px;
+
+#locale {
+max-width: 96px;
+min-height: 50px;
+margin-right: -12px;
+padding-right: 0;
+padding-left: 8px;
+
 }
 
 

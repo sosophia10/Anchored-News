@@ -157,19 +157,19 @@ var drag = d3.drag()
     update();
   });
 
-d3.select(".feed-background")
+  d3.selectAll(".background-placeholder, .feed-background")
   .call(drag);
 
 
 //zoom to scale
 var zoom = d3.zoom()
-  .scaleExtent([90, 900])
+  .scaleExtent([125, 900])
   .on("zoom", function () {
     state.scale = d3.event.transform.k * 2;
     update();
   });
 
-d3.select(".feed-background")
+  d3.selectAll(".background-placeholder, .feed-background")
   .call(zoom);
 
 //source:
