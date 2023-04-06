@@ -5,256 +5,289 @@
 <head>
     <meta charset="utf-8" />
     <title>Anchored News - Compare Trends</title>
-    <!--Selective Line Graphing and Mapping-->
-    <!-- GOOGLE CHARTS VERSION
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>-->
-    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <<!--D3 Graphing and Mapping-->
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <script src="https://unpkg.com/topojson@3"></script>
+  <script src="https://unpkg.com/d3-geo-projection"></script>
 
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/graph.css" />
+
+  <!--JQuery styling sheet for Calender and other widgets-->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <!--JQuery Plugin-->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+
+
+  <!--JQueryUI Plugins-->
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+    $(function () {
+      var dateFormat = "mm/dd/yy",
+        from = $("#from")
+          .datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 3
+          })
+          .on("change", function () {
+            to.datepicker("option", "minDate", getDate(this));
+          }),
+        to = $("#to").datepicker({
+          defaultDate: "+1w",
+          changeMonth: true,
+          numberOfMonths: 3
+        })
+          .on("change", function () {
+            from.datepicker("option", "maxDate", getDate(this));
+          });
+
+      function getDate(element) {
+        var date;
+        try {
+          date = $.datepicker.parseDate(dateFormat, element.value);
+        } catch (error) {
+          date = null;
+        }
+
+        return date;
+      }
+
+      // Load localization files
+      $.getScript("js/datepicker-ar.js");
+      $.getScript("js/datepicker-fr.js");
+      $.getScript("js/datepicker-he.js");
+      $.getScript("js/datepicker-zh.js");
+    });
+
+  </script>
+
+
+  <!--ticker scroll-->
+  <script
+    src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"
+    defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js" defer></script>
+  <script src="js/ticketscroll.js" defer></script>
+
+  <!--G Translate Widget-->
+  <script defer>
+    window.gtranslateSettings = {
+      "detect_browser_language": false,
+      "detect_input_language": false,
+      "wrapper_selector": ".gtranslate_wrapper",
+    };
+  </script>
+  <script src="js/gtranslate_dropdown.js" defer></script>
+
+
+  <!--sources searching amd selection function (JQuery Dependent)-->
+  <script defer>
+    $(document).ready(function () {
+      $("#sourceInput").on("keyup", function () {
+        var value = $(this).val().toUpperCase();
+        $("#sourcesFilter li").filter(function () {
+          $(this).toggle($(this).text().toUpperCase().indexOf(value) > -1)
+        });
+      });
+    });
+  </script>
+
+
+  <!--News Content for Filtering-->
+  <script src="js/news-feed.js" defer></script>
+
+  <!--Styling-->
+  <link rel="stylesheet" href="css/style.css" />
+  <!--Header Font: Questrial-->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Questrial&display=swap');
+  </style>
+
+  <!--News panels-->
+  <script src="js/subnavigation.js" defer></script>
+
+
+    
 </head>
 
 <body>
     <div class="banner">
+        <!-------------------------------Navigation Deck Begin----------------------------------------->
+    
         <nav>
-            <ul class="nav">
-                <li><a href="index.html">News</a></li>
-                <li>
-                    <a href="about.html">About</a>
-                </li>
-                <li>
-                    <a href="trends.html" style="border-top: 6px solid #29aceb; height: 13px;">
-                        Compare Trends
-                    </a>
-                </li>
-                <li><a href="search.html">Search</a></li>
-
-                <li class="title">
-                    <a style="overflow-wrap: normal;" href="#index">Anchored News</a>
-                </li>
-                <li style="float: right;">
-                    <a href="">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</a>
-                </li>
+          <div class="nav-container">
+            <ul class="nav" id="nav">
+              <li class="anchorednews" id="nav-item-title">
+                <a href="about.html">Anchored News</a>
+              </li>
+              <li class="responsive-nav__item" id="nav-item-home">
+                <a href="news.html" class="responsive-nav__link">News</a>
+              </li>
+              <li class="responsive-nav__item" id="nav-item-trends" >
+                <a href="#"style="height: 22px; background-color:#030609; color:#29aceb; border-bottom: 3px solid #29aceb;">Trends</a>
+              </li>
+              <li class="responsive-nav__item right" id="nav-item-search">
+                <div class="search-container responsive-nav__link">
+                  <input type="text" class="search-input" placeholder="Search...">
+                  <button type="submit" class="search-button"></button>
+                </div>
+              </li>
+    
+              <div class="tickerwrapper">
+                <ul class="list">
+                  <li class="listitem">
+                    <span>
+                      &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
+                      &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
+                      &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
+    
+                    </span>
+                  </li>
+                  <li class="listitem">
+                    <span>What is the impact of effortless access to global news?</span>
+                  </li>
+                  <li class="listitem">
+                    <span>
+                      &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
+                      &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
+                      &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
+    
+                    </span>
+                  </li>
+                  <li class="listitem">
+                    <span>
+                      How can Internet readers effectively analyze worldwide trends?
+                    </span>
+                  </li>
+                  <li class="listitem">
+                    <span>
+                      &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
+                      &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
+                      &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
+    
+                    </span>
+                  </li>
+                  <li class="listitem">
+                    <span>
+                      How might normalizing the proactive comparison of news
+                      influence the narratives circulating events?
+                    </span>
+                  </li>
+                </ul>
+              </div>
+    
             </ul>
+          </div>
         </nav>
-
-        <div class="nav" id="message">
-            <p class="message">
-                This website project is an ongoing exploration of news bias, data
-                visualization, and media engagement. The below map does not currently
-                reflect real global trends. This may soon be connected with the below
-                RSS feeds, as well as other features/changes in consideration.
-            </p>
+    
+    
+    <!--subnav-->
+    <div style="margin-top: -16px;" class="subnav-container">
+        <ul class="secondary-nav">
+          <li style="display: none;"></li>
+          <li><a href="#" class="panel-trigger" data-panel="filter"></a></li>
+        </ul>
+      </div>
+    
+    
+        <!-------------------------------Navigation Deck End----------------------------------------->
+    
+        <div class="nav hidden" id="message">
+          <p class="message">
+            Anchored News is an ongoing exploration of news content, data visualization,
+            and user engagement. Maps/graphs could soon be connected to live news
+            publications. The intention of this platform is to aid visual
+            discovery of global media, trends, and bias.
+          </p>
         </div>
-    </div>
+      </div>
+    
+    
 
-    <div class="feed-background">
-        <div class="map" style="background-image: url('images/map.png'); height: 750px;"></div>
-        <!--Map-->
-    </div>
-    <div class="background-placeholder"></div>
 
-    <div class="wrapper">
-        <h1>COMPARE</h1>
-        <div class="margin">
-            <div class="feed-span, feed">
-                <!--SVG Container-->
-                <div class="svg-container" id="container"></div>
-                <!--CONTENT INSIDE SVG CONTAINER DIV-->
-                <script>
-                    //------------------------1. PREPARATION-------------------------//
-                    //-----------------------------SVG-------------------------------//
-                    //setup the dimensions of the graph
-                    var width = 960
-                    var height = 500
-                    var margin = 5
-                    var padding = 5
-                    var adj = 30
-                    // appending the SVG to the div with the div id labeled container
-                    const svg = d3
-                        .select('div#container')
-                        .append('svg')
-                        .attr('preserveAspectRatio', 'xMinYMin meet')
-                        .attr(
-                            'viewBox',
-                            '-' +
-                            adj +
-                            ' -' +
-                            adj +
-                            ' ' +
-                            (width + adj * 3) +
-                            ' ' +
-                            (height + adj * 3),
-                        )
-                        .style('padding', padding)
-                        .style('margin', margin)
-                        .classed('svg-content', true)
-
-                    //-----------------------------DATA------------------------------//
-                    //parse data and time
-                    const timeConv = d3.timeParse('%d-%b-%Y')
-
-                    //parse dataset
-                    const dataset = d3.csv('data/csv/data.csv') //-------------DATA INPUT HERE ////// <-------- ////////////// <--------  ////////////// <--------
-                    dataset.then(function (data) {
-                        const slices = data.columns.slice(1).map(function (id) {
-                            return {
-                                id: id,
-                                values: data.map(function (d) {
-                                    return {
-                                        date: timeConv(d.date),
-                                        measurement: +d[id],
-                                    }
-                                }),
-                            }
-                        })
-
-                        //Print data in browser console
-                        console.log('Column headers', data.columns)
-                        console.log('Column headers without date', data.columns.slice(1))
-                        // returns the sliced dataset
-                        console.log('Slices', slices)
-                        // returns the first slice
-                        console.log('First slice', slices[0])
-                        // returns the array in the first slice
-                        console.log('A array', slices[0].values)
-                        // returns the date of the first row in the first slice
-                        console.log('Date element', slices[0].values[0].date)
-                        // returns the array's length
-                        console.log('Array length', slices[0].values.length)
-
-                        //----------------------------SCALES-----------------------------//
-                        //set the range of the graph
-                        var xScale = d3.scaleTime().range([0, width])
-                        var yScale = d3.scaleLinear().rangeRound([height, 0])
-                        xScale.domain(
-                            d3.extent(data, function (d) {
-                                return timeConv(d.date)
-                            }),
-                        )
-                        yScale.domain([
-                            0,
-                            d3.max(slices, function (c) {
-                                return d3.max(c.values, function (d) {
-                                    return d.measurement + 0
-                                })
-                            }),
-                        ])
-
-                        //-----------------------------AXES------------------------------//
-                        var yaxis = d3
-                            .axisLeft()
-                            .ticks(slices[0].values.length)
-                            //.ticks("font-size", 20)
-                            //.ticks("fill", "#E3E3E3")
-                            .scale(yScale)
-
-                        var xaxis = d3
-                            .axisBottom()
-                            .ticks(d3.timeDay.every(1))
-                            .tickFormat(d3.timeFormat('%b %d'))
-
-                            //.ticks("font-size", 20)
-                            //.ticks("fill", "#E3E3E3")
-                            .scale(xScale)
-
-                        //----------------------------LINES------------------------------//
-                        //define axis by data and scale
-                        var line = d3
-                            .line()
-                            .x(function (d) {
-                                return xScale(d.date)
-                            })
-                            .y(function (d) {
-                                return yScale(d.measurement)
-                            })
-
-                        //start at zero
-                        let id = 0
-                        var ids = function () {
-                            return 'line-' + id++
-                        }
-
-                        //-------------------------2. DRAWING----------------------------//
-
-                        //-----------------------------AXES------------------------------//
-                        svg
-                            .append('g')
-                            .attr('class', 'axis')
-                            .attr('transform', 'translate(0,' + height + ')')
-                            .call(xaxis)
-
-                        svg
-                            .append('g')
-                            .attr('class', 'axis')
-                            .call(yaxis)
-                            .append('text')
-                            .attr('transform', 'rotate(-90)')
-                            .attr('dy', '.75em')
-                            .attr('y', 6)
-                            .style('text-anchor', 'end')
-                            .text('Frequency of Publications')
-
-                        //----------------------------LINES------------------------------//
-                        const lines = svg
-                            .selectAll('lines')
-                            .data(slices)
-                            .enter()
-                            .append('g')
-
-                        lines
-                            .append('path')
-                            .attr('class', ids)
-                            .attr('d', function (d) {
-                                return line(d.values)
-                            })
-
-                        lines
-                            .append('text')
-                            .attr('class', 'serie_label')
-                            .datum(function (d) {
-                                return {
-                                    id: d.id,
-                                    value: d.values[d.values.length - 1],
-                                }
-                            })
-                            .attr('transform', function (d) {
-                                return (
-                                    'translate(' +
-                                    (xScale(d.value.date) + 10) +
-                                    ',' +
-                                    (yScale(d.value.measurement) + 5) +
-                                    ')'
-                                )
-                            })
-                            .attr('x', 5)
-                            .text(function (d) {
-                                return 'Source ' + d.id
-                            })
-                    })
-                </script>
+        <!-- panel for filtering-->
+        <div class="panel" id="filter">
+            <div class="panel-header">
+              <h2>Graph News</h2>
+              <button class="close-panel">×</button>
             </div>
-        </div>
-    </div>
+            <div class="panel-content">
+              <!-- content for panel 2 -->
+              <div class="wrapper">
+                <div class="feed-span, feed">
+        
+        
+                  <div id="filters">
+                    <!--SCRIPT MAKES SELECTED SOURCES APPEAR WITHIN THIS DIV-->
+                    <div id="feed-grid" class="feed-grid"></div>
+        
+        
+                    <div id="searchInputs">
+                      <input type="text" id="sourceInput" onkeyup="searchFunction()" placeholder="Search for news sources..."
+                        title="Type in a name" />
+        
+                      <!--date input widget (JQueryUI Dependent)-->
+                      <input type="text" id="from" placeholder="From: MM/DD/YYYY"
+                        pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d">
+                      <input type="text" id="to" placeholder="Until: MM/DD/YYYY"
+                        pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d">
+        
+                      <select id="locale">
+                        <option value="ar">Arabic (&#x202B;(&#x627;&#x644;&#x639;&#x631;&#x628;&#x64A;&#x629;</option>
+                        <option value="zh-TW">Chinese Traditional (&#x7E41;&#x9AD4;&#x4E2D;&#x6587;)</option>
+                        <option value>English</option>
+                        <option value="fr" selected="selected">French (Fran&#xE7;ais)</option>
+                        <option value="he">Hebrew (&#x202B;(&#x5E2;&#x5D1;&#x5E8;&#x5D9;&#x5EA;</option>
+                      </select>
+        
+        
+                    </div>
+        
+        
+                    <!--G Translate Widget-->
+                    <div class="gtranslate_wrapper"></div>
+        
+                    <!--News Articles-->
+                    <div class="card">
+                      <ul id="sources"></ul>
+                    </div>
+                  </div>
+        
+        
+                </div>
+              </div>
+            </div>
+          </div>
 
-    <footer>
-        <div>
-            <div>
-                <p class="footer-body">
-                    <br />
-                    <br />
-                    Footer Stuff
-                </p>
-            </div>
-            <div>
-                <p class="footer">
-                    <br />
-                    <br />
-                    Webpage by Sophia Herman &nbsp; &nbsp;
-                </p>
-            </div>
-        </div>
-    </footer>
+          
+  <div class="background-placeholder"></div> <!--provides scrolling space for access to map.-->
+
+
+
+  <!-------------------------------Map Begin----------------------------------------->
+  <div class="tooltip-container"></div>
+
+  <!--D3 MAP IN BACKGROUND-->
+  <div class="feed-background">
+
+
+    <svg width="100%" height="800px" class="map" style="text-align: center; margin-top: 100px; overflow: visible;">
+      <g class="graticule">
+        <path class="country"></path>
+      </g>
+      <g class="circles"></g>
+      <g class="map"></g>
+      <circle class="projection-center" r="4"></circle>
+    </svg>
+
+    <script src="js/d3.min.js"></script>
+
+    <script type="text/javascript" src="js/maps.js"></script>
+  </div>
+
+
 </body>
 
 </html>

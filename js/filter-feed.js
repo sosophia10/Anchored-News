@@ -1,4 +1,4 @@
-const root = document.getElementById("sources");
+const rootF = document.getElementById("sourcesF");
 const countryCodeMap = {
     ae: "United Arab Emirates",
     ar: "Argentina",
@@ -62,9 +62,8 @@ function getCountryFullName(code) {
 }
 
 
-const dates = ["23-02-17"];// all dates
+const dates = ["23-02-17"];//, "23-02-17"]; // rewrite to access datepicker input
 
-function fetchAndDisplayData(date) {
 for (let i = 0; i < dates.length; i++) {
     const date = dates[i];
     const src = `data/json/${date}`;
@@ -80,15 +79,15 @@ for (let i = 0; i < dates.length; i++) {
                 data.articles.forEach(article => {
 
 
-        const card = document.createElement("li");
-        card.classList.add("card");
+        const cardF = document.createElement("li");
+        cardF.classList.add("cardF");
 
         const link = document.createElement("a");
         link.href = article.url;
         link.target = "_blank";
         link.classList.add("source");
         link.setAttribute("id", "source");
-        card.appendChild(link);
+        cardF.appendChild(link);
 
         const title = document.createElement("p");
         title.classList.add("title");
@@ -125,48 +124,34 @@ for (let i = 0; i < dates.length; i++) {
         link.appendChild(sourceAndDate);
 
         
-        root.appendChild(card);
+        rootF.appendChild(cardF);
     });
 });
 }
 }
-}
-
-// Load the dates from the dates.json file and call fetchAndDisplayData for each date
-fetch("data/json/dates.json")
-  .then(response => response.json())
-  .then(dates => {
-    for (let i = 0; i < dates.length; i++) {
-      const date = dates[i];
-      fetchAndDisplayData(date);
-    }
-  })
-  .catch(error => {
-    console.error("Error fetching date list:", error);
-  });
 
 function populateSourcesList(countryCode) {
     const date = "23-02-17"; // You may want to change this to use a dynamic date value based on your use case
     const src = `data/json/${date}`;
-    const root = document.getElementById("sources");
+    const rootF = document.getElementById("sourcesF");
   
     fetch(`${src}/${countryCode}.json`)
       .then(response => response.json())
       .then(data => {
         // Clear the list before adding new items
-        root.innerHTML = "";
+        rootF.innerHTML = "";
   
         data.articles.forEach(article => {
-          // Create the card element and add the article data
-          const card = document.createElement("li");
-          card.classList.add("card");
+          // Create the cardF element and add the article data
+          const cardF = document.createElement("li");
+          cardF.classList.add("cardF");
   
           const link = document.createElement("a");
           link.href = article.url;
           link.target = "_blank";
           link.classList.add("source");
           link.setAttribute("id", "source");
-          card.appendChild(link);
+          cardF.appendChild(link);
   
           const title = document.createElement("p");
           title.classList.add("title");
@@ -202,13 +187,13 @@ function populateSourcesList(countryCode) {
   
           link.appendChild(sourceAndDate);
   
-          // Add the card to the list
-          root.appendChild(card);
+          // Add the cardF to the list
+          rootF.appendChild(cardF);
         });
       })
       .catch(error => {
         console.error(`Error fetching news data for ${countryCode}`, error);
         // Show an error message on the UI
-        root.innerHTML = `<li class="error">Error fetching news data for ${countryCode}. Please try again later.</li>`;
+        rootF.innerHTML = `<li class="error">Error fetching news data for ${countryCode}. Please try again later.</li>`;
       });
   }

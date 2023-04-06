@@ -12,17 +12,12 @@
   <script src="https://unpkg.com/d3-geo-projection"></script>
 
 
-  <!--sort of necessary styling sheet-->
+  <!--JQuery styling sheet for Calender and other widgets-->
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <!--JQuery Plugin-->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-  <!--Draggable Div (JQuery dependent)
-  <script>
-    $(function () {
-      $('#controlmap').draggable()
-    })
-  </script>-->
+
 
 
   <!--JQueryUI Plugins-->
@@ -77,6 +72,34 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js" defer></script>
   <script src="js/ticketscroll.js" defer></script>
 
+  <!--G Translate Widget-->
+  <script defer>
+    window.gtranslateSettings = {
+      "detect_browser_language": false,
+      "detect_input_language": false,
+      "wrapper_selector": ".gtranslate_wrapper",
+    };
+  </script>
+  <script src="js/gtranslate_dropdown.js" defer></script>
+
+
+  <!--sources searching amd selection function (JQuery Dependent)-->
+  <script defer>
+    $(document).ready(function () {
+      $("#sourceInput").on("keyup", function () {
+        var value = $(this).val().toUpperCase();
+        $("#sourcesFilter li").filter(function () {
+          $(this).toggle($(this).text().toUpperCase().indexOf(value) > -1)
+        });
+      });
+    });
+  </script>
+
+  <!--News Content-->
+  <script src="js/news-feed.js" defer></script>
+  <!--News Content for Filtering-->
+  <script src="js/filter-feed.js" defer></script>
+
   <!--Styling-->
   <link rel="stylesheet" href="css/style.css" />
   <!--Header Font: Questrial-->
@@ -103,7 +126,7 @@
             <a href="about.html">Anchored News</a>
           </li>
           <li class="responsive-nav__item" id="nav-item-home">
-            <a href="#" class="responsive-nav__link">News</a>
+            <a href="#"style="height: 22px; background-color:#030609; color:#29aceb; border-bottom: 3px solid #29aceb;">News</a>
           </li>
           <li class="responsive-nav__item" id="nav-item-trends">
             <a href="trends.html" class="responsive-nav__link">Trends</a>
@@ -202,6 +225,38 @@
 
 
           <div id="filters">
+
+            <!--G Translate Widget-->
+            <div class="gtranslate_wrapper"></div>
+
+
+            <!--News Articles-->
+            <div class="card">
+              <ul id="sources"></ul>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- panel 2 -->
+  <div class="panel" id="filter">
+    <div class="panel-header">
+      <h2>Filter Articles</h2>
+      <button class="close-panel">×</button>
+    </div>
+    <div class="panel-content">
+      <!-- content for panel 2 -->
+      <div class="wrapper">
+        <div class="feed-span, feed">
+
+
+          <div id="filters">
             <!--SCRIPT MAKES SELECTED SOURCES APPEAR WITHIN THIS DIV-->
             <div id="feed-grid" class="feed-grid"></div>
 
@@ -225,87 +280,21 @@
               </select>
 
 
-              <!--<div class="feed"></div>-->
             </div>
 
-
-            <!--Google Translate is ugly-->
-            <!--<div id="google_translate_element"></div>
-
-          <script type="text/javascript">
-            function googleTranslateElementInit() {
-              new google.translate.TranslateElement({ pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
-            }
-          </script>
-          <script type="text/javascript"
-            src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-            ----------------------->
 
             <!--G Translate Widget-->
             <div class="gtranslate_wrapper"></div>
-            <!--G Translate Widget-->
-            <script>
-              window.gtranslateSettings = {
-                "detect_browser_language": false,
-                "detect_input_language": false,
-                "wrapper_selector": ".gtranslate_wrapper",
-              };
-            </script>
-            <script src="js/gtranslate_dropdown.js" defer></script>
 
-
-
-            <!--<div class="gtranslate_wrapper"></div>
-<script>window.gtranslateSettings = {"default_language":"en","wrapper_selector":".gtranslate_wrapper","switcher_horizontal_position":"right","alt_flags":{"en":"usa"}}</script>
-<script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
-            https://gtranslate.io/website-translator-widget-->
-
-            <div class="card">
-
-              <ul id="sources"></ul>
-
-              <script src="js/news-feed.js"></script>
+            <!--News Articles-->
+            <div class="cardF">
+              <ul id="sourcesF"></ul>
             </div>
           </div>
 
-          <!--sources searching amd selection function (JQuery Dependent)-->
-          <script>
-            $(document).ready(function () {
-              $("#sourceInput").on("keyup", function () {
-                var value = $(this).val().toUpperCase();
-                $("#sources li").filter(function () {
-                  $(this).toggle($(this).text().toUpperCase().indexOf(value) > -1)
-                });
-              });
-              $("#sources").on("click", "li", function () {
-                var source = $(this).find("a").text();
-                if (!$("#feed-grid").find("." + source).length) {
-                  $("#feed-grid").append("<div class='feed " + source + "'>" + source + "</div>");
-                  $(this).hide();
-                }
-              });
-              $("#feed-grid").on("click", ".feed", function () {
-                var source = $(this).text();
-                $("#sources").find("a:contains(" + source + ")").parent().show();
-                $(this).remove();
-              });
-            });
-          </script>
 
         </div>
       </div>
-    </div>
-  </div>
-  </div>
-
-  <!-- panel 2 -->
-  <div class="panel" id="filter">
-    <div class="panel-header">
-      <h2>Filter Articles</h2>
-      <button class="close-panel">×</button>
-    </div>
-    <div class="panel-content">
-      <!-- content for panel 2 -->
     </div>
   </div>
 
@@ -439,24 +428,14 @@
         </div>
       </div>
     </div>
-
+ </div>
     <!-------------------------------Map Controls End----------------------------------------->
 
-  </div>
-  </div>
-
-
-
-
-
+ 
   <!-------------------------------Body Begin----------------------------------------->
 
-  <!-------------------------------Filters Begin----------------------------------------->
   <div class="background-placeholder"></div> <!--provides scrolling space for access to map.-->
 
-
-
-  <!-------------------------------Filters End----------------------------------------->
 
 
   <!-------------------------------Map Begin----------------------------------------->

@@ -1091,6 +1091,17 @@ button {
   background-color: rgba(103, 148, 220, 0.5);
 }
 
+.cardF {
+  width: calc(100% - 22px); /*(padding x 2) + (margin x 2)*/
+  min-width: 380px;
+  height: span;
+  color: #EEE;
+  margin:1px;
+  padding: 10px;
+  float: left;
+  background-color: rgba(103, 148, 220, 0.5);
+}
+
 .info {
   display: flex;
   justify-content: space-between;
