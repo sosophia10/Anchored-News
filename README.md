@@ -24,4 +24,4 @@ Mobile Preview: https://sosophia10.github.io/Anchored-News/mobilepreview.html
 
 ## In-Progress Website
 
-Live Page: https://sosophia10.github.io/Anchored-News/
+Live Page: https://sosophia10.github.io/Anchored-News/news.html
