@@ -168,6 +168,12 @@ p.news {
   transform-origin: left;
 }
 
+.nav-icon img{
+  display: none;
+
+}
+
+
 
   nav {
     padding-bottom: 13px;
@@ -201,7 +207,8 @@ p.news {
 
   ul.nav>li {
     float: left;
-    width: 150px;
+    width: 15%;
+    max-width:150px;
   }
 
   ul.nav>li a {
@@ -248,6 +255,7 @@ p.news {
     right: 0;
     display: flex;
     align-items: center;
+
   }
 
   .search-container:hover {
@@ -270,6 +278,7 @@ p.news {
     border: none;
     border-radius: 0;
     text-transform: uppercase;
+
   }
 
   .search-input:focus{

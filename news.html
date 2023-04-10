@@ -102,6 +102,7 @@
 
   <!--Styling-->
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style_mobile.css" />
   <!--Header Font: Questrial-->
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Questrial&display=swap');
@@ -122,16 +123,27 @@
     <nav>
       <div class="nav-container">
         <ul class="nav" id="nav">
+          <!-- About -->
           <li class="anchorednews" id="nav-item-title">
             <a href="about.html">Anchored News</a>
           </li>
+          <!-- News -->
           <li class="responsive-nav__item" id="nav-item-home">
-            <a href="#"style="height: 22px; background-color:#030609; color:#29aceb; border-bottom: 3px solid #29aceb;">News</a>
+            <a href="#"
+              style="height: 22px; background-color:#030609; color:#29aceb; border-bottom: 3px solid #29aceb;">
+              <span class="nav-text">News</span>
+              <span class="nav-icon"><img src="images/newsalt-b.png" alt="News"></span>
+            </a>
           </li>
+          <!-- Trends -->
           <li class="responsive-nav__item" id="nav-item-trends">
-            <a href="trends.html" class="responsive-nav__link">Trends</a>
+            <a href="trends.html" class="responsive-nav__link">
+              <span class="nav-text">Trends</span>
+              <span class="nav-icon"><img src="images/searchtrend-w.png"  style="width:40px;" alt="Trends"></span>
+            </a>
           </li>
-          <li class="responsive-nav__item right" id="nav-item-search">
+          <!-- Search -->
+          <li class="responsive-nav__item" id="nav-item-search">
             <div class="search-container responsive-nav__link">
               <input type="text" class="search-input" placeholder="Search...">
               <button type="submit" class="search-button"></button>
@@ -428,10 +440,10 @@
         </div>
       </div>
     </div>
- </div>
-    <!-------------------------------Map Controls End----------------------------------------->
+  </div>
+  <!-------------------------------Map Controls End----------------------------------------->
 
- 
+
   <!-------------------------------Body Begin----------------------------------------->
 
   <div class="background-placeholder"></div> <!--provides scrolling space for access to map.-->
