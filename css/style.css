@@ -118,6 +118,8 @@ p.news {
 }
 
 
+
+
   .nav-container {
     display:flex;
     position: relative;
@@ -277,7 +279,6 @@ p.news {
     background-color: #1E3C5A;
     border: none;
     border-radius: 0;
-    text-transform: uppercase;
 
   }
 

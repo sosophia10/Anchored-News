@@ -115,7 +115,7 @@
 
 <body>
   <!-------------------------------Top of Page Begin----------------------------------------->
-
+  <div class="mobile-spacer"></div>
 
   <div class="banner">
     <!-------------------------------Navigation Deck Begin----------------------------------------->
@@ -198,7 +198,7 @@
     </nav>
 
 
-    <!--subnav-->
+    <!--subnav using subnavigation.js-->
     <div class="subnav-container">
       <ul class="secondary-nav">
         <li><a href="#" class="panel-trigger" data-panel="news"></a></li>
@@ -220,6 +220,32 @@
     </div>
   </div>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const searchButton = document.querySelector('.search-button');
+      const searchInput = document.querySelector('.search-input');
+      
+      let searchOpen = false;
+  
+      searchButton.addEventListener('click', function() {
+        if (searchOpen) {
+          // Submit the search input
+          console.log('Submitting search:', searchInput.value);
+          // Replace the line above with your actual search submission logic
+        } else {
+          searchInput.style.display = 'flex';
+          searchInput.focus();
+          searchOpen = true;
+        }
+      });
+  
+      searchInput.addEventListener('blur', function() {
+        searchInput.style.display = 'none';
+        searchOpen = false;
+      });
+    });
+  </script>
+  
 
 
   <!-------------------------------Top of Page End----------------------------------------->

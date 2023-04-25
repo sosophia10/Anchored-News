@@ -201,12 +201,12 @@
     padding: 0;
     overflow: hidden;
     /*header color*/
-    background-color: #030609;
+    background-color: #1e3c5a;
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 3;
-    min-width: 550px;
+    min-width: 360px;
 
   }
 
@@ -230,19 +230,23 @@
     align-items: center;
   }
 
-  ul.nav>li.anchorednews a {
+ li.anchorednews {
     /*background of title*/
     background-color: #030609;
     color: #E3E3E3;
     font-weight: bold;
-    padding: 14px 16px;
-    margin: -5px;
-
+    padding-bottom: 5px;
+    padding-top: 5px;
+    margin: auto;
+    
   }
 
   ul.nav>li a:hover {
-    background-color: #030609
+    background-color: #030609;
+    
   }
+
+
 
   ul.nav>li a:active {
     background-color: #1E3C5A;
@@ -250,13 +254,14 @@
 
 
   .anchorednews {
-    width: 120px;
+    min-width: 180px;
     padding-left: 40px;
+    padding-right: 20px;
     text-align: center;
   }
 
   .search-container {
-    position: absolute;
+    position: fixed;
     right: 0;
     display: flex;
     align-items: center;
@@ -271,17 +276,17 @@
   }
 
   .search-input {
+    display: none;
     height: 25px;
     font-size: 16px;
     font-weight: bold;
     color: #E3E3E3;
     padding: 14px 16px;
     text-decoration: none;
-    display: flex;
+  
     background-color: #1E3C5A;
     border: none;
     border-radius: 0;
-    text-transform: uppercase;
   }
 
   .search-input:focus {
