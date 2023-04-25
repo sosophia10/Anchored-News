@@ -258,7 +258,7 @@ p.news {
     display: flex;
     align-items: center;
 
-  }
+  } 
 
   .search-container:hover {
     background-color: #030609;
