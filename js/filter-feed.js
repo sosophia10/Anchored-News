@@ -197,20 +197,24 @@ function populateSourcesList(countryCode) {
         root.innerHTML = `<li class="error">Error fetching news data for ${countryCode}. Please try again later.</li>`;
       });
   }
+
   function searchFunction() {
     const input = document.getElementById("sourceInput");
     const filter = input.value.toUpperCase();
-    const cards = document.getElementsByClassName("card");
+    const sources = document.getElementsByClassName("source");
   
-    for (let i = 0; i < cards.length; i++) {
-      const card = cards[i];
-      const source = card.querySelector(".source");
+    for (let i = 0; i < sources.length; i++) {
+      const source = sources[i];
       const text = source.textContent || source.innerText;
   
       if (text.toUpperCase().indexOf(filter) > -1) {
-        card.style.display = "";
+        source.style.display = "";
+        source.parentElement.style.display = "";
       } else {
-        card.style.display = "none";
+        source.style.display = "none";
+        source.parentElement.style.display = "none";
       }
     }
   }
+  
+  
