@@ -12,56 +12,55 @@
   <script src="https://unpkg.com/d3-geo-projection"></script>
 
 
-  <!--JQuery styling sheet for Calender and other widgets-->
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <!--JQuery Plugin-->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<!--JQuery UI styling sheet for Calender and other widgets-->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
+<!--JQuery Plugin-->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!--JQueryUI Plugins-->
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script>
+//no longer works Source: https://jqueryui.com/datepicker/#date-range
+$( function() {
+		var dateFormat = "mm/dd/yy",
+			from = $( "#from" )
+				.datepicker({
+					defaultDate: "+1w",
+					changeMonth: true,
+					numberOfMonths: 3
+				})
+				.on( "change", function() {
+					to.datepicker( "option", "minDate", getDate( this ) );
+				}),
+			to = $( "#to" ).datepicker({
+				defaultDate: "+1w",
+				changeMonth: true,
+				numberOfMonths: 3
+			})
+			.on( "change", function() {
+				from.datepicker( "option", "maxDate", getDate( this ) );
+			});
+
+		function getDate( element ) {
+			var date;
+			try {
+				date = $.datepicker.parseDate( dateFormat, element.value );
+			} catch( error ) {
+				date = null;
+			}
+
+			return date;
+		}
 
 
-
-  <!--JQueryUI Plugins-->
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script>
-    $(function () {
-      var dateFormat = "mm/dd/yy",
-        from = $("#from")
-          .datepicker({
-            defaultDate: "+1w",
-            changeMonth: true,
-            numberOfMonths: 3
-          })
-          .on("change", function () {
-            to.datepicker("option", "minDate", getDate(this));
-          }),
-        to = $("#to").datepicker({
-          defaultDate: "+1w",
-          changeMonth: true,
-          numberOfMonths: 3
-        })
-          .on("change", function () {
-            from.datepicker("option", "maxDate", getDate(this));
-          });
-
-      function getDate(element) {
-        var date;
-        try {
-          date = $.datepicker.parseDate(dateFormat, element.value);
-        } catch (error) {
-          date = null;
-        }
-
-        return date;
-      }
-
-      // Load localization files
-      $.getScript("js/datepicker-ar.js");
-      $.getScript("js/datepicker-fr.js");
-      $.getScript("js/datepicker-he.js");
-      $.getScript("js/datepicker-zh.js");
-    });
-
-  </script>
+    // Load localization files
+    $.getScript("js/datepicker-ar.js");
+    $.getScript("js/datepicker-fr.js");
+    $.getScript("js/datepicker-he.js");
+    $.getScript("js/datepicker-zh.js");
+  });
+</script>
 
 
   <!--ticker scroll-->
@@ -82,18 +81,6 @@
   </script>
   <script src="js/gtranslate_dropdown.js" defer></script>
 
-
-  <!--sources searching amd selection function (JQuery Dependent)-->
-  <script defer>
-    $(document).ready(function () {
-      $("#sourceInput").on("keyup", function () {
-        var value = $(this).val().toUpperCase();
-        $("#sourcesFilter li").filter(function () {
-          $(this).toggle($(this).text().toUpperCase().indexOf(value) > -1)
-        });
-      });
-    });
-  </script>
 
   <!--News Content-->
   <script src="js/news-feed.js" defer></script>
@@ -270,8 +257,8 @@
 
 
             <!--News Articles-->
-            <div class="card">
-              <ul id="sources"></ul>
+            <div class="cardN">
+              <ul id="sourcesN"></ul>
             </div>
           </div>
 
@@ -313,7 +300,7 @@
               <select id="locale">
                 <option value="ar">Arabic (&#x202B;(&#x627;&#x644;&#x639;&#x631;&#x628;&#x64A;&#x629;</option>
                 <option value="zh-TW">Chinese Traditional (&#x7E41;&#x9AD4;&#x4E2D;&#x6587;)</option>
-                <option value>English</option>
+                <option value="en" selected="selected">English</option>
                 <option value="fr" selected="selected">French (Fran&#xE7;ais)</option>
                 <option value="he">Hebrew (&#x202B;(&#x5E2;&#x5D1;&#x5E8;&#x5D9;&#x5EA;</option>
               </select>
@@ -326,8 +313,8 @@
             <div class="gtranslate_wrapper"></div>
 
             <!--News Articles-->
-            <div class="cardF">
-              <ul id="sourcesF"></ul>
+            <div class="card">
+              <ul id="sources"></ul>
             </div>
           </div>
 

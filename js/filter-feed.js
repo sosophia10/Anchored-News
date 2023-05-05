@@ -1,4 +1,4 @@
-const rootF = document.getElementById("sourcesF");
+const root = document.getElementById("sources");
 const countryCodeMap = {
     ae: "United Arab Emirates",
     ar: "Argentina",
@@ -79,15 +79,15 @@ for (let i = 0; i < dates.length; i++) {
                 data.articles.forEach(article => {
 
 
-        const cardF = document.createElement("li");
-        cardF.classList.add("cardF");
+        const card = document.createElement("li");
+        card.classList.add("card");
 
         const link = document.createElement("a");
         link.href = article.url;
         link.target = "_blank";
         link.classList.add("source");
         link.setAttribute("id", "source");
-        cardF.appendChild(link);
+        card.appendChild(link);
 
         const title = document.createElement("p");
         title.classList.add("title");
@@ -124,7 +124,7 @@ for (let i = 0; i < dates.length; i++) {
         link.appendChild(sourceAndDate);
 
         
-        rootF.appendChild(cardF);
+        root.appendChild(card);
     });
 });
 }
@@ -133,25 +133,25 @@ for (let i = 0; i < dates.length; i++) {
 function populateSourcesList(countryCode) {
     const date = "23-02-17"; // You may want to change this to use a dynamic date value based on your use case
     const src = `data/json/${date}`;
-    const rootF = document.getElementById("sourcesF");
+    const root = document.getElementById("sources");
   
     fetch(`${src}/${countryCode}.json`)
       .then(response => response.json())
       .then(data => {
         // Clear the list before adding new items
-        rootF.innerHTML = "";
+        root.innerHTML = "";
   
         data.articles.forEach(article => {
-          // Create the cardF element and add the article data
-          const cardF = document.createElement("li");
-          cardF.classList.add("cardF");
+          // Create the card element and add the article data
+          const card = document.createElement("li");
+          card.classList.add("card");
   
           const link = document.createElement("a");
           link.href = article.url;
           link.target = "_blank";
           link.classList.add("source");
           link.setAttribute("id", "source");
-          cardF.appendChild(link);
+          card.appendChild(link);
   
           const title = document.createElement("p");
           title.classList.add("title");
@@ -187,13 +187,30 @@ function populateSourcesList(countryCode) {
   
           link.appendChild(sourceAndDate);
   
-          // Add the cardF to the list
-          rootF.appendChild(cardF);
+          // Add the card to the list
+          root.appendChild(card);
         });
       })
       .catch(error => {
         console.error(`Error fetching news data for ${countryCode}`, error);
         // Show an error message on the UI
-        rootF.innerHTML = `<li class="error">Error fetching news data for ${countryCode}. Please try again later.</li>`;
+        root.innerHTML = `<li class="error">Error fetching news data for ${countryCode}. Please try again later.</li>`;
       });
+  }
+  function searchFunction() {
+    const input = document.getElementById("sourceInput");
+    const filter = input.value.toUpperCase();
+    const cards = document.getElementsByClassName("card");
+  
+    for (let i = 0; i < cards.length; i++) {
+      const card = cards[i];
+      const source = card.querySelector(".source");
+      const text = source.textContent || source.innerText;
+  
+      if (text.toUpperCase().indexOf(filter) > -1) {
+        card.style.display = "";
+      } else {
+        card.style.display = "none";
+      }
+    }
   }
